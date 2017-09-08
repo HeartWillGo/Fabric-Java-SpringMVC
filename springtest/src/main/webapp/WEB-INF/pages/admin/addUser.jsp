@@ -24,21 +24,38 @@
     <h1> 添加用户</h1>
     <hr/>
     <form:form action="/admin/users/addP" method="post" commandName="user" role="form">
+
         <div class="form-group">
-            <label for="firstName">Nickname:</label>
-            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter Nickname:"/>
+            <label for="ID">ID:</label>
+            <input type="text" class="form-control" id="ID" name="nickname" placeholder="Enter ID:"/>
         </div>
         <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter FirstName:"/>
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name:"/>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter LastName:"/>
+            <label for="identificationType">identificationType:</label>
+            <input type="text" class="form-control" id="identificationType" name="identificationType" placeholder="Enter identificationType:"/>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password:"/>
+            <label for="identification">identification:</label>
+            <input type="text" class="form-control" id="identification" name="identification" placeholder="Enter identification:"/>
+        </div>
+        <div class="form-group">
+            <label for="sex">sex:</label>
+            <input type="text" class="form-control" id="sex" name="sex" placeholder="Enter sex:"/>
+        </div>
+        <div class="form-group">
+            <label for="birthday">birthday:</label>
+            <input type="text" class="form-control" id="birthday" name="birthday" placeholder="Enter birthday:"/>
+        </div>
+        <div class="form-group">
+            <label for="bankCard">bankCard:</label>
+            <input type="text" class="form-control" id="bankCard" name="bankCard" placeholder="Enter bankCard:"/>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">phoneNumber:</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter phoneNumber:"/>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">提交</button>

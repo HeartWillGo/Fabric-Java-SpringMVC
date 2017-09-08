@@ -1,6 +1,5 @@
 package com.heartgo.controller;
 import com.heartgo.model.UserEntity;
-import com.heartgo.respository.UserRepository ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,8 +19,8 @@ import java.util.List;
 public class MainController {
 
     // 自动装配数据库接口，不需要再写原始的Connection来操作数据库
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -31,10 +30,10 @@ public class MainController {
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String getUsers(ModelMap modelMap) {
         // 查询user表中所有记录
-        List<UserEntity> userList = userRepository.findAll();
+     //   List<UserEntity> userList = userRepository.findAll();
 
         // 将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("userList", userList);
+      //  modelMap.addAttribute("userList", userList);
 
         // 返回pages目录下的admin/users.jsp页面
         return "admin/users";
@@ -55,11 +54,13 @@ public class MainController {
 
         // 数据库中添加一个用户，该步暂时不会刷新缓存
         //userRepository.save(userEntity);
-        System.out.println(userEntity.getFirstName());
-        System.out.println(userEntity.getLastName());
+        System.out.println(userEntity.getID());
+        System.out.println(userEntity.getName());
+        System.out.println(userEntity.getSex());
+        System.out.println(userEntity.getBankCard());
 
         // 数据库中添加一个用户，并立即刷新缓存
-        userRepository.saveAndFlush(userEntity);
+       // userRepository.saveAndFlush(userEntity);
 
         // 重定向到用户管理页面，方法为 redirect:url
         return "redirect:/admin/users";
@@ -72,10 +73,10 @@ public class MainController {
     public String showUser(@PathVariable("id") Integer userId, ModelMap modelMap) {
 
         // 找到userId所表示的用户
-        UserEntity userEntity = userRepository.findOne(userId);
+        //UserEntity userEntity = userRepository.findOne(userId);
 
         // 传递给请求页面
-        modelMap.addAttribute("user", userEntity);
+   //     modelMap.addAttribute("user", userEntity);
         return "admin/userDetail";
     }
 
@@ -84,10 +85,10 @@ public class MainController {
     public String updateUser(@PathVariable("id") Integer userId, ModelMap modelMap) {
 
         // 找到userId所表示的用户
-        UserEntity userEntity = userRepository.findOne(userId);
+     //   UserEntity userEntity = userRepository.findOne(userId);
 
         // 传递给请求页面
-        modelMap.addAttribute("user", userEntity);
+       // modelMap.addAttribute("user", userEntity);
         return "admin/updateUser";
     }
 
@@ -96,9 +97,9 @@ public class MainController {
     public String updateUserPost(@ModelAttribute("userP") UserEntity user) {
 
         // 更新用户信息
-        userRepository.updateUser(user.getNickname(), user.getFirstName(),
-                user.getLastName(), user.getPassword(), user.getId());
-        userRepository.flush(); // 刷新缓冲区
+//        userRepository.updateUser(user.get, user.getFirstName(),
+//                user.getLastName(), user.getPassword(), user.getId());
+     //   userRepository.flush(); // 刷新缓冲区
         return "redirect:/admin/users";
     }
 
@@ -107,9 +108,9 @@ public class MainController {
     public String deleteUser(@PathVariable("id") Integer userId) {
 
         // 删除id为userId的用户
-        userRepository.delete(userId);
+    //    userRepository.delete(userId);
         // 立即刷新
-        userRepository.flush();
+      //  userRepository.flush();
         return "redirect:/admin/users";
     }
 }

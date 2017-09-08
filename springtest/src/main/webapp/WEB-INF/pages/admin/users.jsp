@@ -40,32 +40,41 @@
         </div>
     </c:if>
 
-    <!-- 如果用户列表非空 -->
-    <c:if test="${!empty userList}">
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>昵称</th>
-                <th>姓名</th>
-                <th>密码</th>
-                <th>操作</th>
-            </tr>
 
-            <c:forEach items="${userList}" var="user">
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.nickname}</td>
-                    <td>${user.firstName} ${user.lastName}</td>
-                    <td>${user.password}</td>
-                    <td>
-                        <a href="/admin/users/show/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
-                        <a href="/admin/users/update/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/admin/users/delete/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>ID</th>
+            <th>名字</th>
+            <th>证件类型</th>
+            <th>证件号码</th>
+            <th>性别</th>
+            <th>生日</th>
+            <th>银行卡号</th>
+            <th>手机号</th>
+            <th>操作</th>
+
+
+        </tr>
+
+        <c:forEach items="${userList}" var="user">
+            <tr>
+                <td>${user.ID}</td>
+                <td>${user.name}</td>
+                <td>${user.identificationType}</td>
+                <td>${user.identification}</td>
+                <td>${user.sex}</td>
+                <td>${user.birthday}</td>
+                <td>${user.bankCard}</td>
+                <td>${user.phoneNumber}</td>
+                <td>
+                    <a href="/admin/users/show/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
+                    <a href="/admin/users/update/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
+                    <a href="/admin/users/delete/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+
 </div>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
