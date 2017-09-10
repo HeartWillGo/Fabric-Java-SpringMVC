@@ -154,7 +154,7 @@ public class End2endIT {
             final SampleStore sampleStore = new SampleStore(sampleStoreFile);
             //  sampleStoreFile.deleteOnExit();
 
-            //SampleUser can be any implementation that implements org.User Interface
+            //SampleUser can be any implementation that implements org.hyperledger.fabric.sdk.User Interface
 
             ////////////////////////////
             // get users for all orgs
@@ -520,6 +520,7 @@ public class End2endIT {
 
                     Collection<ProposalResponse> queryProposals = channel.queryByChaincode(queryByChaincodeRequest, channel.getPeers());
                     for (ProposalResponse proposalResponse : queryProposals) {
+                        System.out.println("propoal:"+proposalResponse.getProposalResponse());
                         if (!proposalResponse.isVerified() || proposalResponse.getStatus() != ProposalResponse.Status.SUCCESS) {
                             fail("Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() +
                                     ". Messages: " + proposalResponse.getMessage()

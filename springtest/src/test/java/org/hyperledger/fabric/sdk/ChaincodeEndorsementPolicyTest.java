@@ -139,7 +139,7 @@ public class ChaincodeEndorsementPolicyTest {
     //src/test/fixture/sample_chaincode_endorsement_policies/badusertestCCEPPolicy.yaml
 
 //    /**
-//     * Test method for {@link org.ChaincodeEndorsementPolicy#fromBytes(byte[])}.
+//     * Test method for {@link org.hyperledger.fabric.sdk.ChaincodeEndorsementPolicy#fromBytes(byte[])}.
 //     */
 //    @Test
 //    public void testSetPolicy() {

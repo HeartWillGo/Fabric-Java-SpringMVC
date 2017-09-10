@@ -97,7 +97,7 @@ public class HFCAClientIT {
                 testConfig.getIntegrationTestsSampleOrg(TEST_WITH_INTEGRATION_ORG).getCAProperties());
         client.setCryptoSuite(crypto);
 
-        // SampleUser can be any implementation that implements org.User Interface
+        // SampleUser can be any implementation that implements org.hyperledger.fabric.sdk.User Interface
         admin = sampleStore.getMember(TEST_ADMIN_NAME, TEST_ADMIN_ORG);
         if (!admin.isEnrolled()) { // Preregistered admin only needs to be enrolled with Fabric CA.
             admin.setEnrollment(client.enroll(admin.getName(), TEST_ADMIN_PW));

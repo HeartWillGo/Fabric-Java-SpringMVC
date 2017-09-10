@@ -11,24 +11,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.hyperledger.fabric.sdk.testutils;
+package com.heartgo.controller;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hyperledger.fabric.sdk.helper.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.hyperledger.fabric.sdk.helper.Utils;
-import org.hyperledger.fabric.sdkintegration.SampleOrg;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * Config allows for a global config of the toolkit. Central location for all
@@ -44,10 +41,10 @@ import org.hyperledger.fabric.sdkintegration.SampleOrg;
  * Test Configuration
  */
 
-public class TestConfig {
-    private static final Log logger = LogFactory.getLog(TestConfig.class);
+public class Config {
+    private static final Log logger = LogFactory.getLog(Config.class);
 
-    private static final String DEFAULT_CONFIG = "src/test/java/org/hyperledger/fabric/sdk/testutils.properties";
+    private static final String DEFAULT_CONFIG = "/E:/Users/IdeaProjects/springtest/src/test/java/org/hyperledger/fabric/sdk/testutils.properties";
     private static final String ORG_HYPERLEDGER_FABRIC_SDK_CONFIGURATION = "org.hyperledger.fabric.sdktest.configuration";
 
     private static final String PROPBASE = "org.hyperledger.fabric.sdktest.";
@@ -61,14 +58,34 @@ public class TestConfig {
 
     private static final String INTEGRATIONTESTSTLS = PROPBASE + "integrationtests.tls";
 
-    private static TestConfig config;
+    private static Config config;
     private static final Properties sdkProperties = new Properties();
     private final boolean runningTLS;
     private final boolean runningFabricCATLS;
     private final boolean runningFabricTLS;
+
+    //配置
+    public  static final String TEST_ADMIN_NAME = "admin";
+    public static final String TESTUSER_1_NAME = "user1";
+    public static final String TEST_FIXTURES_PATH = "/E:/Users/IdeaProjects/springtest/src/test/fixture";
+
+    public static final String CHAIN_CODE_NAME = "chaincode_asset";
+    public static final String CHAIN_CODE_PATH = "github.com/example_cc";
+    public static final String CHAIN_CODE_VERSION = "1";
+
+    public static final String FOO_CHANNEL_NAME = "foo";
+    public static final String BAR_CHANNEL_NAME = "bar";
+
+    public static final byte[] EXPECTED_EVENT_DATA = "!".getBytes(UTF_8);
+    public static final String EXPECTED_EVENT_NAME = "event";
+
+    public String testTxID = null;  // save the CC invoke TxID and use in queries
+
+
+
     private static final HashMap<String, SampleOrg> sampleOrgs = new HashMap<>();
 
-    private TestConfig() {
+    private Config() {
         File loadFile;
         FileInputStream configProps;
 
@@ -94,17 +111,17 @@ public class TestConfig {
             //////
             defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.mspid", "Org1MSP");
             defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.domname", "org1.example.com");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.ca_location", "http://192.168.191.2:7054");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.ca_location", "http://113.209.100.15:7054");
             defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.caName", "ca0");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.peer_locations", "peer0.org1.example.com@grpc://192.168.191.2:7051, peer1.org1.example.com@grpc://192.168.191.2:7056");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.orderer_locations", "orderer.example.com@grpc://192.168.191.2:7050");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.eventhub_locations", "peer0.org1.example.com@grpc://192.168.191.2:7053,peer1.org1.example.com@grpc://192.168.191.2:7058");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.peer_locations", "peer0.org1.example.com@grpc://113.209.100.15:7051, peer1.org1.example.com@grpc://113.209.100.15:7056");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.orderer_locations", "orderer.example.com@grpc://113.209.100.15:7050");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg1.eventhub_locations", "peer0.org1.example.com@grpc://113.209.100.15:7053,peer1.org1.example.com@grpc://113.209.100.15:7058");
             defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.mspid", "Org2MSP");
             defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.domname", "org2.example.com");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.ca_location", "http://192.168.191.2:8054");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.peer_locations", "peer0.org2.example.com@grpc://192.168.191.2:8051,peer1.org2.example.com@grpc://192.168.191.2:8056");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.orderer_locations", "orderer.example.com@grpc://192.168.191.2:7050");
-            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.eventhub_locations", "peer0.org2.example.com@grpc://192.168.191.2:8053, peer1.org2.example.com@grpc://192.168.191.2:8058");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.ca_location", "http://113.209.100.15:8054");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.peer_locations", "peer0.org2.example.com@grpc://113.209.100.15:8051,peer1.org2.example.com@grpc://113.209.100.15:8056");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.orderer_locations", "orderer.example.com@grpc://113.209.100.15:7050");
+            defaultProperty(INTEGRATIONTESTS_ORG + "peerOrg2.eventhub_locations", "peer0.org2.example.com@grpc://113.209.100.15:8053, peer1.org2.example.com@grpc://113.209.100.15:8058");
 
             defaultProperty(INTEGRATIONTESTSTLS, null);
             runningTLS = null != sdkProperties.getProperty(INTEGRATIONTESTSTLS, null);
@@ -161,7 +178,7 @@ public class TestConfig {
                 sampleOrg.setCAName(sdkProperties.getProperty((INTEGRATIONTESTS_ORG + org.getKey() + ".caName")));
 
                 if (runningFabricCATLS) {
-                    String cert = "src/test/fixture/sdkintegration/e2e-2Orgs/channel/crypto-config/peerOrganizations/DNAME/ca/ca.DNAME-cert.pem".replaceAll("DNAME", domainName);
+                    String cert = "/E:/Users/IdeaProjects/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel/crypto-config/peerOrganizations/DNAME/ca/ca.DNAME-cert.pem".replaceAll("DNAME", domainName);
                     File cf = new File(cert);
                     if (!cf.exists() || !cf.isFile()) {
                         throw new RuntimeException("TEST is missing cert file " + cf.getAbsolutePath());
@@ -202,9 +219,9 @@ public class TestConfig {
      *
      * @return Global configuration
      */
-    public static TestConfig getConfig() {
+    public static Config getConfig() {
         if (null == config) {
-            config = new TestConfig();
+            config = new Config();
         }
         return config;
 
@@ -282,9 +299,9 @@ public class TestConfig {
     private Properties getEndPointProperties(final String type, final String name) {
 
         final String domainName = getDomainName(name);
+        String str_cert=getTestChannelPath()+ "/crypto-config/ordererOrganizations".replace("orderer", type)+"/" +domainName+"/"+ type + "s/"+ name+ "/tls/server.crt";
 
-        File cert = Paths.get(getTestChannelPath(), "crypto-config/ordererOrganizations".replace("orderer", type), domainName, type + "s",
-                name, "tls/server.crt").toFile();
+        File cert = new File(str_cert);
         if (!cert.exists()) {
             throw new RuntimeException(String.format("Missing cert file for: %s. Could not find at location: %s", name,
                     cert.getAbsolutePath()));
@@ -308,7 +325,7 @@ public class TestConfig {
 
     public String getTestChannelPath() {
 
-        return "src/test/fixture/sdkintegration/e2e-2Orgs/channel";
+        return "/E:/Users/IdeaProjects/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel";
 
     }
 

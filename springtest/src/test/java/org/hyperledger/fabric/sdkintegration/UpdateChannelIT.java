@@ -109,7 +109,7 @@ public class UpdateChannelIT {
 
             final SampleStore sampleStore = new SampleStore(sampleStoreFile);
 
-            //SampleUser can be any implementation that implements org.User Interface
+            //SampleUser can be any implementation that implements org.hyperledger.fabric.sdk.User Interface
 
             ////////////////////////////
             // get users for all orgs

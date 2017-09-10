@@ -71,7 +71,7 @@ public class HFCAClientTest {
         sampleStore = new SampleStore(sampleStoreFile);
         sampleStoreFile.deleteOnExit();
 
-        // SampleUser can be any implementation that implements org.User Interface
+        // SampleUser can be any implementation that implements org.hyperledger.fabric.sdk.User Interface
         admin = sampleStore.getMember(TEST_ADMIN_NAME, TEST_ADMIN_ORG);
 
     }

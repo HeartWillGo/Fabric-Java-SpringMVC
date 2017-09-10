@@ -1,6 +1,5 @@
 package com.heartgo.controller;
 import com.heartgo.model.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-import java.util.List;
+import java.io.File;
 
 /**
  * Created by dzkan on 2016/3/8.
@@ -24,7 +23,7 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        return "index";
+        return "admin/users";
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
@@ -54,17 +53,46 @@ public class MainController {
 
         // 数据库中添加一个用户，该步暂时不会刷新缓存
         //userRepository.save(userEntity);
-        System.out.println(userEntity.getID());
-        System.out.println(userEntity.getName());
-        System.out.println(userEntity.getSex());
-        System.out.println(userEntity.getBankCard());
+        String ID=userEntity.getID() ;             //用户ID
+        String Name=userEntity.getName() ;          //用户名字
+        int IdentificationType=userEntity.getIdentificationType(); // 证件类型
+        String Identification=userEntity.getIdentification() ;  //证件号码
+        int Sex=userEntity.getSex() ;               //性别
+        String Birthday=userEntity.getBirthday() ;        //生日
+        String BankCard=userEntity.getBankCard() ;        //银行卡号
+        String PhoneNumber =userEntity.getPhoneNumber();     //手机号
+        String[] str_user=new String[]{ID,Name,new String().valueOf(IdentificationType), Identification,new String().valueOf(Sex),Birthday,BankCard,PhoneNumber};
+        for(String s:str_user){
+            System.out.println(s);
+        }
 
+        File directory = new File("");//设定为当前文件夹 
+        System.out.println( );//获取标准的路径 
+        System.out.println("oo"+directory.getAbsolutePath());//获取绝对路径 
+        //System.out.println("str_user:"+str_user.toString());
+        try {
+            System.out.println("file this"+this.getClass().getResource("").toURI().getPath());
+            System.out.println("file this /"+this.getClass().getResource("/").toURI().getPath());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        End2end end=new End2end();
+        end.run();
         // 数据库中添加一个用户，并立即刷新缓存
        // userRepository.saveAndFlush(userEntity);
 
         // 重定向到用户管理页面，方法为 redirect:url
         return "redirect:/admin/users";
     }
+
+    @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
+    public String Inatall() {
+
+        End2end end=new End2end();
+        end.InitRun();
+        return "redirect:/admin/users";
+    }
+
 
     // 查看用户详情
     // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来

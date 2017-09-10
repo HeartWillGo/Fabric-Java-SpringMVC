@@ -19,10 +19,10 @@ package org.hyperledger.fabric.sdk;
 //import java.util.Arrays;
 //import java.util.concurrent.TimeUnit;
 //
-//import org.ChaincodeException;
-//import org.ProposalException;
-//import org.EnrollmentException;
-//import org.RegistrationException;
+//import org.hyperledger.fabric.sdk.exception.ChaincodeException;
+//import org.hyperledger.fabric.sdk.exception.ProposalException;
+//import org.hyperledger.fabric_ca.sdk.exception.EnrollmentException;
+//import org.hyperledger.fabric_ca.sdk.exception.RegistrationException;
 //import org.junit.BeforeClass;
 //import org.junit.Test;
 
