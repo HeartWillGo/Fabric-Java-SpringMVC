@@ -58,7 +58,7 @@
 
         <c:forEach items="${userList}" var="user">
             <tr>
-                <td>${user.ID}</td>
+                <td>${user.id}</td>
                 <td>${user.name}</td>
                 <td>${user.identificationType}</td>
                 <td>${user.identification}</td>
