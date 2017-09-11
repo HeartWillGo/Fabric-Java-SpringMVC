@@ -86,7 +86,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
-    public String Inatall() {
+    public String userInstall() {
 
         End2end end=new End2end();
         end.InitRun();
@@ -143,46 +143,17 @@ public class MainController {
     }
 
 
-    // 更新机构信息 页面
-    @RequestMapping(value = "/admin/orgs/update/{id}", method = RequestMethod.GET)
-    public String updateUser(@PathVariable("id") Integer userId, ModelMap modelMap) {
 
-        // 找到userId所表示的机构
-        //   UserEntity userEntity = userRepository.findOne(userId);
-
-        // 传递给请求页面
-        // modelMap.addAttribute("user", userEntity);
-        return "admin/org/updateOrg";
-    }
-
-    // 更新机构信息 操作
-    @RequestMapping(value = "/admin/users/updateP", method = RequestMethod.POST)
-    public String updateUserPost(@ModelAttribute("userP") UserEntity user) {
-
-        // 更新机构信息
-//        userRepository.updateUser(user.get, user.getFirstName(),
-//                user.getLastName(), user.getPassword(), user.getId());
-        //   userRepository.flush(); // 刷新缓冲区
-        return "redirect:/admin/orgs";
-    }
-
-    // 删除机构
-    @RequestMapping(value = "/admin/users/delete/{id}", method = RequestMethod.GET)
-    public String deleteUser(@PathVariable("id") Integer userId) {
-
-
-        return "redirect:/admin/users";
-    }
-
-    @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
-    public String Inatall() {
+    // org End2end
+    @RequestMapping(value = "/admin/orgs/install", method = RequestMethod.GET)
+    public String orgInstall() {
 
         End2end end=new End2end();
         end.InitRun();
-        return "redirect:/admin/users";
+        return "redirect:/admin/org/orgs";
     }
 
-
+    // get org information
     @RequestMapping(value = "/admin/orgs", method = RequestMethod.GET)
     public String getOrg(ModelMap modelMap) {
         return "admin/org/orgs";
@@ -252,4 +223,16 @@ public class MainController {
         orgRepository.flush();
         return "redirect:/admin/orgs";
     }
+
+    // 更新机构信息 操作
+    @RequestMapping(value = "/admin/users/updateP", method = RequestMethod.POST)
+    public String updateOrgPost(@ModelAttribute("userP") UserEntity user) {
+
+        // 更新机构信息
+//        userRepository.updateUser(user.get, user.getFirstName(),
+//                user.getLastName(), user.getPassword(), user.getId());
+        //   userRepository.flush(); // 刷新缓冲区
+        return "redirect:/admin/orgs";
+    }
+
 }
