@@ -20,7 +20,8 @@ public class MainController {
     // 自动装配数据库接口，不需要再写原始的Connection来操作数据库
 //    @Autowired
 //    UserRepository userRepository;
-
+    public  ClientBean foobean;
+    public ClientBean barbean;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "admin/users";
@@ -47,7 +48,7 @@ public class MainController {
 
     // post请求，处理添加用户请求，并重定向到用户管理页面
     @RequestMapping(value = "/admin/users/addP", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("user") UserEntity userEntity,@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+    public String addUserPost(@ModelAttribute("user") UserEntity userEntity ) {
         // 注意此处，post请求传递过来的是一个UserEntity对象，里面包含了该用户的信息
         // 通过@ModelAttribute()注解可以获取传递过来的'user'，并创建这个对象
 
@@ -89,23 +90,28 @@ public class MainController {
 
         End2end end=new End2end();
         end.InitRun();
-        ClientBean foobean=end.fooclientbean;
-        ClientBean barbean=end.barclientbean;
-
-        modelMap.addAttribute("foobean",foobean);
-        modelMap.addAttribute("foobean",foobean);
+        foobean=end.fooclientbean;
+        barbean=end.barclientbean;
+        System.out.println("foobean:"+foobean);
+        System.out.println("barbean:"+barbean);
+//        modelMap.addAttribute("foobean",foobean);
+//        modelMap.addAttribute("foobean",foobean);
         return "redirect:/admin/users";
     }
 
     @RequestMapping(value = "/admin/users/transaction", method = RequestMethod.GET)
-    public String Transaction(@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+    public String Transaction() {
 
          RunChannel run=new RunChannel();
          String[] str=new String[]{"a","b","100"};
-         System.out.println("str:"+str);
+
+         System.out.println("str:"+str.toString());
+         System.out.println("foobean:"+foobean);
+         System.out.println("barbean:"+barbean);
+
          run.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
          run.SendtTansactionToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
-
+         System.out.println("transaction ok");
 
         return "redirect:/admin/users";
     }
