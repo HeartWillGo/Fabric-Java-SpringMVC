@@ -22,7 +22,7 @@ public class MainController {
 
     // 自动装配数据库接口，不需要再写原始的Connection来操作数据库
 //    @Autowired
-     OrgRepository orgRepository;
+    OrgRepository orgRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -32,10 +32,10 @@ public class MainController {
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String getUsers(ModelMap modelMap) {
         // 查询user表中所有记录
-     //   List<UserEntity> userList = userRepository.findAll();
+        //   List<UserEntity> userList = userRepository.findAll();
 
         // 将所有记录传递给要返回的jsp页面，放在userList当中
-      //  modelMap.addAttribute("userList", userList);
+        //  modelMap.addAttribute("userList", userList);
 
         // 返回pages目录下的admin/users.jsp页面
         return "admin/users";
@@ -50,38 +50,38 @@ public class MainController {
 
     // post请求，处理添加用户请求，并重定向到用户管理页面
     @RequestMapping(value = "/admin/users/addP", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("user") UserEntity userEntity,@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+    public String addUserPost(@ModelAttribute("user") UserEntity userEntity, @ModelAttribute("foobean") ClientBean foobean, @ModelAttribute("barbean") ClientBean barbean) {
         // 注意此处，post请求传递过来的是一个UserEntity对象，里面包含了该用户的信息
         // 通过@ModelAttribute()注解可以获取传递过来的'user'，并创建这个对象
 
         // 数据库中添加一个用户，该步暂时不会刷新缓存
         //userRepository.save(userEntity);
-        String ID=userEntity.getID() ;             //用户ID
-        String Name=userEntity.getName() ;          //用户名字
-        int IdentificationType=userEntity.getIdentificationType(); // 证件类型
-        String Identification=userEntity.getIdentification() ;  //证件号码
-        int Sex=userEntity.getSex() ;               //性别
-        String Birthday=userEntity.getBirthday() ;        //生日
-        String BankCard=userEntity.getBankCard() ;        //银行卡号
-        String PhoneNumber =userEntity.getPhoneNumber();     //手机号
-        String[] str_user=new String[]{ID,Name,new String().valueOf(IdentificationType), Identification,new String().valueOf(Sex),Birthday,BankCard,PhoneNumber};
-        for(String s:str_user){
+        String ID = userEntity.getID();             //用户ID
+        String Name = userEntity.getName();          //用户名字
+        int IdentificationType = userEntity.getIdentificationType(); // 证件类型
+        String Identification = userEntity.getIdentification();  //证件号码
+        int Sex = userEntity.getSex();               //性别
+        String Birthday = userEntity.getBirthday();        //生日
+        String BankCard = userEntity.getBankCard();        //银行卡号
+        String PhoneNumber = userEntity.getPhoneNumber();     //手机号
+        String[] str_user = new String[]{ID, Name, new String().valueOf(IdentificationType), Identification, new String().valueOf(Sex), Birthday, BankCard, PhoneNumber};
+        for (String s : str_user) {
             System.out.println(s);
         }
 
         File directory = new File("");//设定为当前文件夹 
-        System.out.println( );//获取标准的路径 
-        System.out.println("oo"+directory.getAbsolutePath());//获取绝对路径 
+        System.out.println();//获取标准的路径 
+        System.out.println("oo" + directory.getAbsolutePath());//获取绝对路径 
         //System.out.println("str_user:"+str_user.toString());
         try {
-            System.out.println("file this"+this.getClass().getResource("").toURI().getPath());
-            System.out.println("file this /"+this.getClass().getResource("/").toURI().getPath());
-        }catch (Exception e){
+            System.out.println("file this" + this.getClass().getResource("").toURI().getPath());
+            System.out.println("file this /" + this.getClass().getResource("/").toURI().getPath());
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         // 数据库中添加一个用户，并立即刷新缓存
-       // userRepository.saveAndFlush(userEntity);
+        // userRepository.saveAndFlush(userEntity);
 
         // 重定向到用户管理页面，方法为 redirect:url
         return "redirect:/admin/users";
@@ -90,25 +90,24 @@ public class MainController {
     @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
     public String Inatall(ModelMap modelMap) {
 
-        End2end end=new End2end();
+        End2end end = new End2end();
         end.InitRun();
-        ClientBean foobean=end.fooclientbean;
-        ClientBean barbean=end.barclientbean;
+        ClientBean foobean = end.fooclientbean;
+        ClientBean barbean = end.barclientbean;
 
-        modelMap.addAttribute("foobean",foobean);
-        modelMap.addAttribute("foobean",foobean);
+        modelMap.addAttribute("foobean", foobean);
+        modelMap.addAttribute("foobean", foobean);
         return "redirect:/admin/users";
     }
 
     @RequestMapping(value = "/admin/users/transaction", method = RequestMethod.GET)
-    public String Transaction(@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+    public String Transaction(@ModelAttribute("foobean") ClientBean foobean, @ModelAttribute("barbean") ClientBean barbean) {
 
-         RunChannel run=new RunChannel();
-         String[] str=new String[]{"a","b","100"};
-         System.out.println("str:"+str);
-         run.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
-         run.SendtTansactionToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
-
+        RunChannel run = new RunChannel();
+        String[] str = new String[]{"a", "b", "100"};
+        System.out.println("str:" + str);
+        run.SendtTansactionToPeers(foobean.getClient(), foobean.getChannel(), foobean.getChaincodeid(), str);
+        run.SendtTansactionToPeers(barbean.getClient(), barbean.getChannel(), barbean.getChaincodeid(), str);
 
         return "redirect:/admin/users";
     }
@@ -123,7 +122,7 @@ public class MainController {
         //UserEntity userEntity = userRepository.findOne(userId);
 
         // 传递给请求页面
-   //     modelMap.addAttribute("user", userEntity);
+        //     modelMap.addAttribute("user", userEntity);
         return "admin/userDetail";
     }
 
@@ -132,10 +131,10 @@ public class MainController {
     public String updateUser(@PathVariable("id") Integer userId, ModelMap modelMap) {
 
         // 找到userId所表示的用户
-     //   UserEntity userEntity = userRepository.findOne(userId);
+        //   UserEntity userEntity = userRepository.findOne(userId);
 
         // 传递给请求页面
-       // modelMap.addAttribute("user", userEntity);
+        // modelMap.addAttribute("user", userEntity);
         return "admin/updateUser";
     }
 
@@ -146,7 +145,7 @@ public class MainController {
         // 更新用户信息
 //        userRepository.updateUser(user.get, user.getFirstName(),
 //                user.getLastName(), user.getPassword(), user.getId());
-     //   userRepository.flush(); // 刷新缓冲区
+        //   userRepository.flush(); // 刷新缓冲区
         return "redirect:/admin/users";
     }
 
@@ -155,20 +154,18 @@ public class MainController {
     public String deleteUser(@PathVariable("id") Integer userId) {
 
         // 删除id为userId的用户
-    //    userRepository.delete(userId);
+        //    userRepository.delete(userId);
         // 立即刷新
-      //  userRepository.flush();
+        //  userRepository.flush();
         return "redirect:/admin/users";
     }
-<<<<<<< HEAD
-
 
 
     // org End2end
     @RequestMapping(value = "/admin/orgs/install", method = RequestMethod.GET)
     public String orgInstall() {
 
-        End2end end=new End2end();
+        End2end end = new End2end();
         end.InitRun();
         return "redirect:/admin/org/orgs";
     }
@@ -228,7 +225,7 @@ public class MainController {
     public String updateOrgPost(@ModelAttribute("orgP") OrgEntity org) {
 
         // 更新机构信息
-        orgRepository.updateOrg(org.getId(), org.getOrgName(),org.getOrgType());
+        orgRepository.updateOrg(org.getId(), org.getOrgName(), org.getOrgType());
 
         return "redirect:/admin/orgs";
     }
@@ -244,7 +241,4 @@ public class MainController {
         return "redirect:/admin/orgs";
     }
 
-
-=======
->>>>>>> b9e141006379d636f2c76dacad9e204e0fd7bb3a
 }
