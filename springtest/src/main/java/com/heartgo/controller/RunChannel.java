@@ -310,12 +310,11 @@ public class RunChannel {
     ////////////////////////////
     // Send Query Proposal to all peers
     //
-    public static void SendQuryToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,int delta){
+    public static void SendQuryToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,String[] query){
         try {
-            String expect = "" + (300 + delta);
-            out("Now query chaincode for the value of b.");
+
             QueryByChaincodeRequest queryByChaincodeRequest = client.newQueryProposalRequest();
-            queryByChaincodeRequest.setArgs(new String[]{"query", "001"});
+            queryByChaincodeRequest.setArgs(query);
             queryByChaincodeRequest.setFcn("invoke");
             queryByChaincodeRequest.setChaincodeID(chaincodeID);
 

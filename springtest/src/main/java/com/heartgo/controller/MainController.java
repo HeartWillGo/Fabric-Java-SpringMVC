@@ -119,6 +119,25 @@ public class MainController {
         return "redirect:/admin/users";
     }
 
+    @RequestMapping(value = "/admin/users/query", method = RequestMethod.GET)
+    public String Query() {
+
+        RunChannel foorun=foobean.getRunchannel();
+        RunChannel barrun=barbean.getRunchannel();
+        String[] str=new String[] {"query", "b"};
+        System.out.println("str:"+str.toString());
+        System.out.println("foobean:"+foobean);
+        System.out.println("barbean:"+barbean);
+        System.out.println("foorun success size:"+foorun.successful.size());
+        System.out.println("barrun success size:"+barrun.successful.size());
+
+        foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
+        barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
+        System.out.println("transaction ok");
+
+        return "redirect:/admin/users";
+    }
+
     // 查看用户详情
     // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来
     // 例如：访问 localhost:8080/admin/users/show/1 ，将匹配 id = 1

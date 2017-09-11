@@ -32,7 +32,8 @@
     <hr/>
 
     <h3>所有用户 <a href="/admin/users/add" type="button" class="btn btn-primary btn-sm">添加</a> <a href="/admin/users/install" type="button" class="btn btn-primary btn-sm">Install</a>
-        <a href="/admin/users/transaction" type="button" class="btn btn-primary btn-sm">Transaction</a></h3>
+        <a href="/admin/users/transaction" type="button" class="btn btn-primary btn-sm">Transaction</a>
+        <a href="/admin/users/query" type="button" class="btn btn-primary btn-sm">Query</a></h3>
 
     <!-- 如果用户列表为空 -->
     <c:if test="${empty userList}">
