@@ -1,5 +1,8 @@
 package com.heartgo.controller;
 import com.heartgo.model.UserEntity;
+import com.heartgo.model.OrgEntity;
+import com.heartgo.respository.OrgRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +22,11 @@ public class MainController {
 
     // 自动装配数据库接口，不需要再写原始的Connection来操作数据库
 //    @Autowired
-//    UserRepository userRepository;
+     OrgRepository orgRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        return "admin/users";
+        return "index";
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
@@ -202,14 +205,14 @@ public class MainController {
         return "admin/org/updateOrg";
     }
 
+
     // 更新机构信息 操作
     @RequestMapping(value = "/admin/orgs/updateP", method = RequestMethod.POST)
-    public String updateOrg(@ModelAttribute("orgP") OrgEntity org) {
+    public String updateOrgPost(@ModelAttribute("orgP") OrgEntity org) {
 
-        orgRepository.updateOrg(org.getId(), org.getOrgName(),
-                org.getOrgType());
+        // 更新机构信息
+        orgRepository.updateOrg(org.getId(), org.getOrgName(),org.getOrgType());
 
-        orgRepository.flush(); // 刷新缓冲区
         return "redirect:/admin/orgs";
     }
 
@@ -224,15 +227,5 @@ public class MainController {
         return "redirect:/admin/orgs";
     }
 
-    // 更新机构信息 操作
-    @RequestMapping(value = "/admin/users/updateP", method = RequestMethod.POST)
-    public String updateOrgPost(@ModelAttribute("userP") UserEntity user) {
-
-        // 更新机构信息
-//        userRepository.updateUser(user.get, user.getFirstName(),
-//                user.getLastName(), user.getPassword(), user.getId());
-        //   userRepository.flush(); // 刷新缓冲区
-        return "redirect:/admin/orgs";
-    }
 
 }

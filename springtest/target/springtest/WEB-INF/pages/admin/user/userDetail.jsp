@@ -20,27 +20,30 @@
 </head>
 <body>
 <div class="container">
-    <h1> 机构详情</h1>
+    <h1> 用户详情</h1>
     <hr/>
 
     <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>
-            <td>${org.id}</td>
+            <td>${user.id}</td>
         </tr>
         <tr>
-            <th>OrgId</th>
-            <td>${org.orgId}</td>
+            <th>Nickname</th>
+            <td>${user.nickname}</td>
         </tr>
         <tr>
-            <th>Org Name</th>
-            <td>${org.orgName}</td>
+            <th>First Name</th>
+            <td>${user.firstName}</td>
         </tr>
         <tr>
-            <th>Org Type</th>
-            <td>${org.orgType}</td>
+            <th>Last Name</th>
+            <td>${user.lastName}</td>
         </tr>
-
+        <tr>
+            <th>Password</th>
+            <td>${user.password}</td>
+        </tr>
     </table>
 </div>
 

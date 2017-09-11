@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title> 用户详情</title>
+    <title> 更新机构</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -20,29 +21,29 @@
 </head>
 <body>
 <div class="container">
-    <h1> 机构详情</h1>
+    <h1> 更新机构信息</h1>
     <hr/>
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>ID</th>
-            <td>${org.id}</td>
-        </tr>
-        <tr>
-            <th>OrgId</th>
-            <td>${org.orgId}</td>
-        </tr>
-        <tr>
-            <th>Org Name</th>
-            <td>${org.orgName}</td>
-        </tr>
-        <tr>
-            <th>Org Type</th>
-            <td>${org.orgType}</td>
-        </tr>
+    <form:form action="/admin/orgs/updateP" method="post" commandName="orgP" role="form">
+        <div class="form-group">
+            <label for="orgName">Org Name:</label>
+            <input type="text" class="form-control" id="orgName" name="orgName" placeholder="Enter OrgName:"
+                   value="${org.orgName}"/>
+        </div>
+        <div class="form-group">
+            <label for="orgType">Org Type:</label>
+            <input type="text" class="form-control" id="orgType" name="orgType" placeholder="Enter orgType:"
+                   value="${org.orgType}"/>
+        </div>
+        <!-- 把 id 一并写入 userP 中 -->
+        <input type="hidden" id="id" name="id" value="${org.id}"/>
 
-    </table>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-success">提交</button>
+        </div>
+    </form:form>
 </div>
+
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
