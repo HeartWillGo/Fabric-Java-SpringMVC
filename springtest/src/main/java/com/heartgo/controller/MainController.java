@@ -45,12 +45,12 @@ public class MainController {
     @RequestMapping(value = "/admin/users/add", method = RequestMethod.GET)
     public String addUser() {
         // 返回 admin/addUser.jsp页面
-        return "admin/user/addUser";
+        return "admin/addUser";
     }
 
     // post请求，处理添加用户请求，并重定向到用户管理页面
     @RequestMapping(value = "/admin/users/addP", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("user") UserEntity userEntity) {
+    public String addUserPost(@ModelAttribute("user") UserEntity userEntity,@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
         // 注意此处，post请求传递过来的是一个UserEntity对象，里面包含了该用户的信息
         // 通过@ModelAttribute()注解可以获取传递过来的'user'，并创建这个对象
 
@@ -79,8 +79,7 @@ public class MainController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        End2end end=new End2end();
-        end.run();
+
         // 数据库中添加一个用户，并立即刷新缓存
        // userRepository.saveAndFlush(userEntity);
 
@@ -89,13 +88,30 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
-    public String userInstall() {
+    public String Inatall(ModelMap modelMap) {
 
         End2end end=new End2end();
         end.InitRun();
+        ClientBean foobean=end.fooclientbean;
+        ClientBean barbean=end.barclientbean;
+
+        modelMap.addAttribute("foobean",foobean);
+        modelMap.addAttribute("foobean",foobean);
         return "redirect:/admin/users";
     }
 
+    @RequestMapping(value = "/admin/users/transaction", method = RequestMethod.GET)
+    public String Transaction(@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+
+         RunChannel run=new RunChannel();
+         String[] str=new String[]{"a","b","100"};
+         System.out.println("str:"+str);
+         run.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
+         run.SendtTansactionToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
+
+
+        return "redirect:/admin/users";
+    }
 
     // 查看用户详情
     // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来
@@ -108,7 +124,7 @@ public class MainController {
 
         // 传递给请求页面
    //     modelMap.addAttribute("user", userEntity);
-        return "admin/user/userDetail";
+        return "admin/userDetail";
     }
 
     // 更新用户信息 页面
@@ -120,7 +136,7 @@ public class MainController {
 
         // 传递给请求页面
        // modelMap.addAttribute("user", userEntity);
-        return "admin/user/updateUser";
+        return "admin/updateUser";
     }
 
     // 更新用户信息 操作
@@ -144,6 +160,7 @@ public class MainController {
       //  userRepository.flush();
         return "redirect:/admin/users";
     }
+<<<<<<< HEAD
 
 
 
@@ -228,4 +245,6 @@ public class MainController {
     }
 
 
+=======
+>>>>>>> b9e141006379d636f2c76dacad9e204e0fd7bb3a
 }

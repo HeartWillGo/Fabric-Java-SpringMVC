@@ -42,6 +42,11 @@ public class End2end {
     Channel fooChannel;
     Channel barChannel;
     HFClient client;
+    public ClientBean fooclientbean;
+    public ClientBean barclientbean;
+    private ChaincodeID chaincodeID= ChaincodeID.newBuilder().setName(testConfig.CHAIN_CODE_NAME)
+            .setVersion(testConfig.CHAIN_CODE_VERSION)
+            .setPath(testConfig.CHAIN_CODE_PATH).build();
     public  void run() {
         try {
             sampleorgs= new CheckConfig().checkConfig(testConfig);
@@ -54,20 +59,22 @@ public class End2end {
 
 
             setup.SetupUsers(sampleorgs);
-            RunChannel runchannel=new RunChannel(testConfig);
+            RunChannel runchannel=new RunChannel( );
             SampleOrg sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg1");
-            fooChannel = reconstructChannel(testConfig.FOO_CHANNEL_NAME, client, sampleOrg);
+           // fooChannel = reconstructChannel(testConfig.FOO_CHANNEL_NAME, client, sampleOrg);
             System.out.println("we have run channel!!!"+fooChannel);
-            runchannel. runChannel(client, fooChannel, true, sampleOrg, 0);
+            runchannel.Inatall(client,fooChannel,sampleOrg,chaincodeID);
             System.out.println("we have run channel");
             fooChannel.shutdown(true); // Force foo channel to shutdown clean up resources.
             out("\n");
+            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg);
+
 
             sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg2");
             barChannel = reconstructChannel(testConfig.BAR_CHANNEL_NAME, client, sampleOrg);
             runchannel.runChannel(client, barChannel, true, sampleOrg, 100); //run a newly constructed bar channel with different b value!
             //let bar channel just shutdown so we have both scenarios.
-
+         //   barclientbean=new ClientBean(client,barChannel,chaincodeID,sampleOrg);
             out("\nTraverse the blocks for chain %s ", barChannel.getName());
             blockWalker(barChannel);
             out("That's all folks!");
@@ -89,22 +96,27 @@ public class End2end {
             SetUp setup=new SetUp(testConfig,testConfig.TEST_ADMIN_NAME,testConfig.TESTUSER_1_NAME);
             client = setup.SetupClient();
 
-
             setup.InitUsers(sampleorgs);
-            RunChannel runchannel=new RunChannel(testConfig);
+            RunChannel runchannel=new RunChannel( );
             SampleOrg sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg1");
             fooChannel = constructChannel(testConfig.FOO_CHANNEL_NAME, client, sampleOrg);
             System.out.println("we have run channel!!!"+fooChannel);
-            runchannel. runChannel(client, fooChannel, true, sampleOrg, 0);
+            runchannel.Inatall(client,fooChannel,sampleOrg,chaincodeID);
+            runchannel.Instantiate(client,chaincodeID,fooChannel);
+            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg);
             System.out.println("we have run channel");
-            fooChannel.shutdown(true); // Force foo channel to shutdown clean up resources.
+            //fooChannel.shutdown(true); // Force foo channel to shutdown clean up resources.
             out("\n");
+
+
 
             sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg2");
             barChannel = constructChannel(testConfig.BAR_CHANNEL_NAME, client, sampleOrg);
-            runchannel.runChannel(client, barChannel, true, sampleOrg, 100); //run a newly constructed bar channel with different b value!
+            //runchannel.runChannel(client, barChannel, true, sampleOrg, 100); //run a newly constructed bar channel with different b value!
             //let bar channel just shutdown so we have both scenarios.
-
+            barclientbean=new ClientBean(client,barChannel,chaincodeID,sampleOrg);
+            runchannel.Inatall(client,barChannel,sampleOrg,chaincodeID);
+            runchannel.Instantiate(client,chaincodeID,barChannel);
             out("\nTraverse the blocks for chain %s ", barChannel.getName());
             blockWalker(barChannel);
             out("That's all folks!");
