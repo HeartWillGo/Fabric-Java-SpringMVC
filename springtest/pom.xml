@@ -208,6 +208,74 @@
      <target>1.8</target>
     </configuration>
    </plugin>
+   <plugin>
+    <groupId>org.xolstice.maven.plugins</groupId>
+    <artifactId>protobuf-maven-plugin</artifactId>
+    <version>0.5.0</version>
+    <configuration>
+     <!--
+       The version of protoc must match protobuf-java. If you don't depend on
+       protobuf-java directly, you will be transitively depending on the
+       protobuf-java version that grpc depends on.
+     -->
+     <protocArtifact>com.google.protobuf:protoc:3.0.0:exe:${os.detected.classifier}</protocArtifact>
+     <pluginId>grpc-java</pluginId>
+     <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
+     </pluginArtifact>
+     <attachProtoSources>false</attachProtoSources>
+    </configuration>
+    <executions>
+     <execution>
+      <goals>
+       <goal>compile</goal>
+       <goal>compile-custom</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.3</version>
+    <configuration>
+     <source>1.8</source>
+     <target>1.8</target>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <version>2.10.4</version>
+    <configuration>
+     <excludePackageNames>
+      org.hyperledger.fabric_ca.sdk.helper:org.hyperledger.fabric.protos.*:org.hyperledger.fabric.sdk.helper:org.hyperledger.fabric.sdk.transaction:org.hyperledger.fabric.sdk.security
+     </excludePackageNames>
+     <show>public</show>
+     <doctitle>Hyperledger Fabric Java SDK</doctitle>
+     <nohelp>true</nohelp>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <version>2.10.4</version>
+    <configuration>
+     <excludePackageNames>
+      org.hyperledger.fabric_ca.sdk.helper:org.hyperledger.fabric.protos.*:org.hyperledger.fabric.sdk.helper:org.hyperledger.fabric.sdk.transaction:org.hyperledger.fabric.sdk.security
+     </excludePackageNames>
+     <show>public</show>
+     <doctitle>Hyperledger Fabric Java SDK</doctitle>
+     <nohelp>true</nohelp>
+    </configuration>
+    <executions>
+     <execution>
+      <id>attach-javadocs</id>
+      <goals>
+       <goal>jar</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
   </plugins>
 
 

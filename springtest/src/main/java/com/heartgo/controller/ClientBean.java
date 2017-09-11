@@ -12,11 +12,12 @@ public class ClientBean
     private Channel channel;
     private ChaincodeID chaincodeid;
     private SampleOrg sampleorgs;
-    public ClientBean(HFClient client,Channel channel,ChaincodeID chaincodeid,SampleOrg sampleorgs){
+    private RunChannel runchannel;
+    public ClientBean(HFClient client,Channel channel,ChaincodeID chaincodeid,SampleOrg sampleorgs,RunChannel runchannel){
         this.chaincodeid=chaincodeid;
         this.channel=channel;
         this.client=client;
-
+        this.runchannel=runchannel;
         this.sampleorgs=sampleorgs;
     }
     public void setClient(HFClient client){
@@ -44,5 +45,11 @@ public class ClientBean
     }
     public SampleOrg  getSampleorgs(){
         return sampleorgs;
+    }
+    public void setRunchannel(RunChannel runchannel){
+        this.runchannel=runchannel;
+    }
+    public RunChannel getRunchannel() {
+        return runchannel;
     }
 }

@@ -67,7 +67,7 @@ public class End2end {
             System.out.println("we have run channel");
             fooChannel.shutdown(true); // Force foo channel to shutdown clean up resources.
             out("\n");
-            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg);
+            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg,runchannel);
 
 
             sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg2");
@@ -97,26 +97,27 @@ public class End2end {
             client = setup.SetupClient();
 
             setup.InitUsers(sampleorgs);
-            RunChannel runchannel=new RunChannel( );
+
+            RunChannel foorunchannel=new RunChannel( );
             SampleOrg sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg1");
             fooChannel = constructChannel(testConfig.FOO_CHANNEL_NAME, client, sampleOrg);
             System.out.println("we have run channel!!!"+fooChannel);
-            runchannel.Inatall(client,fooChannel,sampleOrg,chaincodeID);
-            runchannel.Instantiate(client,chaincodeID,fooChannel);
-            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg);
+            foorunchannel.Inatall(client,fooChannel,sampleOrg,chaincodeID);
+            foorunchannel.Instantiate(client,chaincodeID,fooChannel);
+            fooclientbean=new ClientBean(client,fooChannel,chaincodeID,sampleOrg,foorunchannel);
             System.out.println("we have run channel");
             //fooChannel.shutdown(true); // Force foo channel to shutdown clean up resources.
             out("\n");
 
 
-
+            RunChannel barrunchannel=new RunChannel( );
             sampleOrg = testConfig.getIntegrationTestsSampleOrg("peerOrg2");
             barChannel = constructChannel(testConfig.BAR_CHANNEL_NAME, client, sampleOrg);
             //runchannel.runChannel(client, barChannel, true, sampleOrg, 100); //run a newly constructed bar channel with different b value!
             //let bar channel just shutdown so we have both scenarios.
-            barclientbean=new ClientBean(client,barChannel,chaincodeID,sampleOrg);
-            runchannel.Inatall(client,barChannel,sampleOrg,chaincodeID);
-            runchannel.Instantiate(client,chaincodeID,barChannel);
+            barclientbean=new ClientBean(client,barChannel,chaincodeID,sampleOrg,barrunchannel);
+            barrunchannel.Inatall(client,barChannel,sampleOrg,chaincodeID);
+            barrunchannel.Instantiate(client,chaincodeID,barChannel);
             out("\nTraverse the blocks for chain %s ", barChannel.getName());
             blockWalker(barChannel);
             out("That's all folks!");
