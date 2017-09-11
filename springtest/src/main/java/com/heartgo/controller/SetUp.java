@@ -1,5 +1,6 @@
 package com.heartgo.controller;
 
+
 import org.hyperledger.fabric.sdk.HFClient;
 import org.hyperledger.fabric.sdk.security.CryptoSuite;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
@@ -7,7 +8,6 @@ import org.hyperledger.fabric_ca.sdk.HFCAInfo;
 import org.hyperledger.fabric_ca.sdk.RegistrationRequest;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Collection;
 
 import static java.lang.String.format;

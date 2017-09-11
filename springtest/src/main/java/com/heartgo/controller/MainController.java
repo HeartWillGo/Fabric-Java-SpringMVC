@@ -42,12 +42,12 @@ public class MainController {
     @RequestMapping(value = "/admin/users/add", method = RequestMethod.GET)
     public String addUser() {
         // 返回 admin/addUser.jsp页面
-        return "admin/user/addUser";
+        return "admin/addUser";
     }
 
     // post请求，处理添加用户请求，并重定向到用户管理页面
     @RequestMapping(value = "/admin/users/addP", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("user") UserEntity userEntity) {
+    public String addUserPost(@ModelAttribute("user") UserEntity userEntity,@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
         // 注意此处，post请求传递过来的是一个UserEntity对象，里面包含了该用户的信息
         // 通过@ModelAttribute()注解可以获取传递过来的'user'，并创建这个对象
 
@@ -76,8 +76,7 @@ public class MainController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        End2end end=new End2end();
-        end.run();
+
         // 数据库中添加一个用户，并立即刷新缓存
        // userRepository.saveAndFlush(userEntity);
 
@@ -86,13 +85,30 @@ public class MainController {
     }
 
     @RequestMapping(value = "/admin/users/install", method = RequestMethod.GET)
-    public String userInstall() {
+    public String Inatall(ModelMap modelMap) {
 
         End2end end=new End2end();
         end.InitRun();
+        ClientBean foobean=end.fooclientbean;
+        ClientBean barbean=end.barclientbean;
+
+        modelMap.addAttribute("foobean",foobean);
+        modelMap.addAttribute("foobean",foobean);
         return "redirect:/admin/users";
     }
 
+    @RequestMapping(value = "/admin/users/transaction", method = RequestMethod.GET)
+    public String Transaction(@ModelAttribute("foobean") ClientBean foobean,@ModelAttribute("barbean") ClientBean barbean) {
+
+         RunChannel run=new RunChannel();
+         String[] str=new String[]{"a","b","100"};
+         System.out.println("str:"+str);
+         run.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
+         run.SendtTansactionToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
+
+
+        return "redirect:/admin/users";
+    }
 
     // 查看用户详情
     // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来
@@ -105,7 +121,7 @@ public class MainController {
 
         // 传递给请求页面
    //     modelMap.addAttribute("user", userEntity);
-        return "admin/user/userDetail";
+        return "admin/userDetail";
     }
 
     // 更新用户信息 页面
@@ -117,7 +133,7 @@ public class MainController {
 
         // 传递给请求页面
        // modelMap.addAttribute("user", userEntity);
-        return "admin/user/updateUser";
+        return "admin/updateUser";
     }
 
     // 更新用户信息 操作
@@ -141,98 +157,4 @@ public class MainController {
       //  userRepository.flush();
         return "redirect:/admin/users";
     }
-
-
-
-    // org End2end
-    @RequestMapping(value = "/admin/orgs/install", method = RequestMethod.GET)
-    public String orgInstall() {
-
-        End2end end=new End2end();
-        end.InitRun();
-        return "redirect:/admin/org/orgs";
-    }
-
-    // get org information
-    @RequestMapping(value = "/admin/orgs", method = RequestMethod.GET)
-    public String getOrg(ModelMap modelMap) {
-        return "admin/org/orgs";
-    }
-
-    // get请求，访问添加org 页面
-    @RequestMapping(value = "/admin/orgs/add", method = RequestMethod.GET)
-    public String addOrg() {
-        // 返回 admin/addUser.jsp页面
-        return "admin/org/orgs";
-    }
-
-    // post请求，处理添加机构请求，并重定向到机构管理页面
-    @RequestMapping(value = "/admin/orgs/addP", method = RequestMethod.POST)
-    public String addOrgPost(@ModelAttribute("org") OrgEntity orgEntity) {
-        // 注意此处，post请求传递过来的是一个OrgEntity对象，里面包含了该机构的信息
-        // 通过@ModelAttribute()注解可以获取传递过来的'org'，并创建这个对象
-
-        System.out.println(orgEntity.getId());
-        System.out.println(orgEntity.getOrgName());
-        System.out.println(orgEntity.getOrgType());
-
-
-        return "redirect:/admin/orgs";
-    }
-
-    // 查看机构详情
-    // @PathVariable可以收集url中的变量，需匹配的变量用{}括起来
-    // 例如：访问 localhost:8080/admin/orgs/show/1 ，将匹配 id = 1
-    @RequestMapping(value = "/admin/orgs/show/{id}", method = RequestMethod.GET)
-    public String showOrg(@PathVariable("id") Integer orgId, ModelMap modelMap) {
-
-        OrgEntity orgEntity = orgRepository.findOne(orgId);
-        modelMap.addAttribute("org", orgEntity);
-        return "admin/org/orgDetail";
-    }
-
-    // 更新机构信息 页面
-    @RequestMapping(value = "/admin/orgs/update/{id}", method = RequestMethod.GET)
-    public String updateOrg(@PathVariable("id") Integer orgId, ModelMap modelMap) {
-
-        OrgEntity orgEntity = orgRepository.findOne(orgId);
-
-        // 传递给请求页面
-        modelMap.addAttribute("org", orgEntity);
-        return "admin/org/updateOrg";
-    }
-
-    // 更新机构信息 操作
-    @RequestMapping(value = "/admin/orgs/updateP", method = RequestMethod.POST)
-    public String updateOrg(@ModelAttribute("orgP") OrgEntity org) {
-
-        orgRepository.updateOrg(org.getId(), org.getOrgName(),
-                org.getOrgType());
-
-        orgRepository.flush(); // 刷新缓冲区
-        return "redirect:/admin/orgs";
-    }
-
-    // 删除机构
-    @RequestMapping(value = "/admin/orgs/delete/{id}", method = RequestMethod.GET)
-    public String deleteOrg(@PathVariable("id") Integer orgId) {
-
-        // 删除id为userId的机构
-        orgRepository.delete(orgId);
-        // 立即刷新
-        orgRepository.flush();
-        return "redirect:/admin/orgs";
-    }
-
-    // 更新机构信息 操作
-    @RequestMapping(value = "/admin/users/updateP", method = RequestMethod.POST)
-    public String updateOrgPost(@ModelAttribute("userP") UserEntity user) {
-
-        // 更新机构信息
-//        userRepository.updateUser(user.get, user.getFirstName(),
-//                user.getLastName(), user.getPassword(), user.getId());
-        //   userRepository.flush(); // 刷新缓冲区
-        return "redirect:/admin/orgs";
-    }
-
 }

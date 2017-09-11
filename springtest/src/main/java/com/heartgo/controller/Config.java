@@ -20,7 +20,6 @@ import org.hyperledger.fabric.sdk.helper.Utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
