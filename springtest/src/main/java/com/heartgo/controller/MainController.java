@@ -63,10 +63,11 @@ public class MainController {
         String Birthday=userEntity.getBirthday() ;        //生日
         String BankCard=userEntity.getBankCard() ;        //银行卡号
         String PhoneNumber =userEntity.getPhoneNumber();     //手机号
-        String[] str_user=new String[]{ID,Name,new String().valueOf(IdentificationType), Identification,new String().valueOf(Sex),Birthday,BankCard,PhoneNumber};
+        String[] str_user=new String[]{"CreateUser",ID,Name,new String().valueOf(IdentificationType), Identification,new String().valueOf(Sex),Birthday,BankCard,PhoneNumber};
         for(String s:str_user){
             System.out.println(s);
         }
+
 
         File directory = new File("");//设定为当前文件夹 
         System.out.println( );//获取标准的路径 
@@ -78,6 +79,16 @@ public class MainController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        RunChannel foorun=foobean.getRunchannel();
+        RunChannel barrun=barbean.getRunchannel();
+
+        System.out.println("foobean:"+foobean);
+        System.out.println("barbean:"+barbean);
+        System.out.println("foorun success size:"+foorun.successful.size());
+        System.out.println("barrun success size:"+barrun.successful.size());
+        foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),str_user);
+        barrun.SendtTansactionToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),barbean.getSampleorgs(),str_user);
+        System.out.println("transaction ok");
 
         // 数据库中添加一个用户，并立即刷新缓存
        // userRepository.saveAndFlush(userEntity);
@@ -124,7 +135,7 @@ public class MainController {
 
         RunChannel foorun=foobean.getRunchannel();
         RunChannel barrun=barbean.getRunchannel();
-        String[] str=new String[] {"query", "b"};
+        String[] str=new String[] {"query", "111"};
         System.out.println("str:"+str.toString());
         System.out.println("foobean:"+foobean);
         System.out.println("barbean:"+barbean);

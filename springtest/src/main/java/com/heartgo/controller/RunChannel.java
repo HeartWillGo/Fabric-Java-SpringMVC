@@ -93,11 +93,11 @@ public class RunChannel {
                 System.out.println("isFooChain");
 
                 ////For GO language and serving just a single user, chaincodeSource is mostly likely the users GOPATH
-                installProposalRequest.setChaincodeSourceLocation(new File(testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/sample1"));
+                installProposalRequest.setChaincodeSourceLocation(new File(testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/asset"));
             } else {
                 // On bar chain install from an input stream.
                 System.out.println("not isFooChain");
-                String str = testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/sample1/" + "src/" + testConfig.CHAIN_CODE_PATH;
+                String str = testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/asset/" + "src/" + testConfig.CHAIN_CODE_PATH;
                 System.out.println("run channel str" + str);
                 File file = new File(str);
                 installProposalRequest.setChaincodeInputStream(Util.generateTarGzInputStream(
@@ -156,7 +156,7 @@ public class RunChannel {
             instantiateProposalRequest.setProposalWaitTime(testConfig.getProposalWaitTime());
             instantiateProposalRequest.setChaincodeID(chaincodeID);
             instantiateProposalRequest.setFcn("init");
-            instantiateProposalRequest.setArgs(new String[]{"a", "600", "b","600"});
+            instantiateProposalRequest.setArgs(new String[]{ });
             Map<String, byte[]> tm = new HashMap<>();
             tm.put("HyperLedgerFabric", "InstantiateProposalRequest:JavaSDK".getBytes(UTF_8));
             tm.put("method", "InstantiateProposalRequest".getBytes(UTF_8));
