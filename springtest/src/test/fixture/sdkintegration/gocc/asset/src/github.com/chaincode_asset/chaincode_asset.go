@@ -48,7 +48,7 @@ type Fund struct {
 //产品
 type Product struct {
 	ProductID      string `json:"productid"`      //产品id
-	ProductName    int    `json:"productname"`    //产品名称
+	ProductName    string    `json:"productname"`    //产品名称
 	ProductType    int    `json:"producttype"`    //产品类型
 	OrganizationID string `json:"organizationid"` //产品所属机构id
 	Portion        int    `json:"portion"`        //产品份额

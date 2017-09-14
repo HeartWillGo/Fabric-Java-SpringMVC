@@ -1,6 +1,7 @@
 package com.heartgo.controller;
 
 
+import com.google.gson.JsonObject;
 import org.apache.commons.codec.binary.Hex;
 import com.heartgo.myutil.ConfigHelper;
 import org.hyperledger.fabric.sdk.*;
@@ -310,7 +311,8 @@ public class RunChannel {
     ////////////////////////////
     // Send Query Proposal to all peers
     //
-    public static void SendQuryToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,String[] query){
+    public static String SendQuryToPeers(HFClient client, Channel channel, ChaincodeID chaincodeID, String[] query){
+        String payload=new String();
         try {
 
             QueryByChaincodeRequest queryByChaincodeRequest = client.newQueryProposalRequest();
@@ -330,7 +332,7 @@ public class RunChannel {
 //                                    ". Messages: " + proposalResponse.getMessage()
 //                                    + ". Was verified : " + proposalResponse.isVerified());
                 } else {
-                    String payload = proposalResponse.getProposalResponse().getResponse().getPayload().toStringUtf8();
+                    payload = proposalResponse.getProposalResponse().getResponse().getPayload().toStringUtf8();
                     out("Query payload of b from peer %s returned %s", proposalResponse.getPeer().getName(), payload);
                     //  assertEquals(payload, expect);
                 }
@@ -339,6 +341,7 @@ public class RunChannel {
             e.printStackTrace();
 
         }
+        return payload;
 
     }
 
