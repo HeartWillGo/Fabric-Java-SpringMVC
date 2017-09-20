@@ -2,11 +2,13 @@ package com.heartgo.controller;
 
 
 
+import com.heartgo.respository.DeployChaincode;
+import com.heartgo.respository.InvokeChainCode;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 
-import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,7 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.json.Json;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,39 +35,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value="/blockchain/user/*")
 public class UserController {
-    public  ClientBean foobean;
-    public ClientBean barbean;
-    public End2end end=SingleEnd2End.getEnd2EndInstance();
+
     @RequestMapping(value = "install", method = RequestMethod.GET)
     public String Inatall() {
 
-
-        end.InitRun();
-        foobean=end.fooclientbean;
-        barbean=end.barclientbean;
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-//        modelMap.addAttribute("foobean",foobean);
-//        modelMap.addAttribute("foobean",foobean);
+         try {
+             DeployChaincode deploy = new DeployChaincode();
+             deploy.install();
+         }catch (Exception e){
+             e.printStackTrace();
+         }
         return "success";
     }
     //用户登录
     @RequestMapping(value="login",method= RequestMethod.GET)
-    public String UserLogin(HttpServletRequest request,HttpServletResponse response) throws IOException{
-        String userid=request.getParameter("userid");
-        String username=request.getParameter("username");
-        String token=request.getParameter("token");
+    public String UserLogin(@RequestBody String body,HttpServletRequest request,HttpServletResponse response) throws IOException{
+
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        String userid=requestcontent.getString("userid");
+        String username=requestcontent.getString("username");
+        String token=requestcontent.getString("token");
         String[] args=new String[]{"UserLogin",userid,username,token};
 
 
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
-
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-       // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println("transaction ok");
         System.out.println("result："+result);
         if(result.equals("success")){
@@ -74,22 +75,29 @@ public class UserController {
         return null;
     }
     //用户查询当下所有产品
-    @RequestMapping(value="query/product",method= RequestMethod.GET)
-    public @ResponseBody ArrayList<Map<String,String>> UserQueryProduct(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String userid=request.getParameter("userid");
+    @RequestMapping(value="query/product",method= RequestMethod.POST)
+    public @ResponseBody ArrayList<Map<String,String>> UserQueryProduct(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
+
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        String userid=requestcontent.getString("userid");
         String[] args=new String[]{"getUserProduct",userid};
 
         ArrayList<Map<String,String>> list=new ArrayList<Map<String,String>>();
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("transaction ok");
-        System.out.println("result："+result);
+//
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("transaction ok");
+//        System.out.println("result："+result);
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         JSONArray arr=JSONArray.fromObject(result);
 
         for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
@@ -110,23 +118,29 @@ public class UserController {
         return list;
     }
     //用户查询某机构下的产品
-    @RequestMapping(value="query/product/org",method= RequestMethod.GET)
-    public @ResponseBody ArrayList<Map<String,String>> getUserProductbyOrg(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String userid=request.getParameter("userid");
-        String org_id=request.getParameter("org_id");
+    @RequestMapping(value="query/product/org",method= RequestMethod.POST)
+    public @ResponseBody ArrayList<Map<String,String>> getUserProductbyOrg(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        String userid=requestcontent.getString ("userid");
+        String org_id=requestcontent.getString("org_id");
         String[] args=new String[]{"getUserProductbyOrg",userid,org_id};
 
         ArrayList<Map<String,String>> list=new ArrayList<Map<String,String>>();
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("transaction ok");
-        System.out.println("result："+result);
+//
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("transaction ok");
+//        System.out.println("result："+result);
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         JSONArray arr=JSONArray.fromObject(result);
 
         for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
@@ -148,22 +162,30 @@ public class UserController {
     }
     //查询用户交易
     @RequestMapping(value="query/transaction/org",method= RequestMethod.GET)
-    public @ResponseBody ArrayList<Map<String,String>> getUserTransactionbyOrg(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String userid=request.getParameter("userid");
+    public @ResponseBody ArrayList<Map<String,String>> getUserTransactionbyOrg(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        String userid=requestcontent.getString("userid");
        // String org_id=request.getParameter("org_id");
         String[] args=new String[]{"getTransactionByUserID",userid};
 
         ArrayList<Map<String,String>> list=new ArrayList<Map<String,String>>();
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("transaction ok");
-        System.out.println("result："+result);
+//        RunChannel foorun=foobean.getRunchannel();
+//        RunChannel barrun=barbean.getRunchannel();
+//
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("transaction ok");
+//        System.out.println("result："+result);
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         JSONArray arr=JSONArray.fromObject(result);
 
         for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
@@ -203,20 +225,25 @@ public class UserController {
 
         String[] args=new String[]{"Transaction",body};
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
-
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("transaction ok");
-        System.out.println("result："+result);
-        JSONArray arr=JSONArray.fromObject(result);
-        if(result.equals("success")){
-            return "success";
+//        System.out.println("foobean:"+foobean);
+//        System.out.println("barbean:"+barbean);
+//        RunChannel foorun=foobean.getRunchannel();
+//        RunChannel barrun=barbean.getRunchannel();
+//
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("transaction ok");
+//        System.out.println("result："+result);
+//        JSONArray arr=JSONArray.fromObject(result);
+//        if(result.equals("success")){
+//            return "success";
+//        }
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
 
 
         return "error";
@@ -243,24 +270,30 @@ public class UserController {
 
 
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("result :"+result);
-
-        JSONArray arr=JSONArray.fromObject(result);
-        if(result.equals("success")){
-            return "success";
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
+
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("result :"+result);
+//
+//        JSONArray arr=JSONArray.fromObject(result);
+//        if(result.equals("success")){
+//            return "success";
+//        }
 
 
         return "error";
     }
     //修改个人信息
+    //创建用户
     @RequestMapping(value="updateinfo",method= RequestMethod.POST)
     public @ResponseBody String  WriteUser(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException{
         System.out.println("body:"+body);
@@ -282,23 +315,29 @@ public class UserController {
 
 
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("result :"+result);
-
-        JSONArray arr=JSONArray.fromObject(result);
-        if(result.equals("success")){
-            return "success";
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
+
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("result :"+result);
+//
+//        JSONArray arr=JSONArray.fromObject(result);
+//        if(result.equals("success")){
+//            return "success";
+//        }
 
 
         return "error";
     }
+
 
 
     @RequestMapping(value = "query", method = RequestMethod.POST)
@@ -313,37 +352,46 @@ public class UserController {
 
 
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        RunChannel foorun=foobean.getRunchannel();
+//        RunChannel barrun=barbean.getRunchannel();
+//
+//        foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
 
-
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return "success";
     }
 
     //查询个人总资产
-    @RequestMapping(value="asset",method= RequestMethod.POST)
-    public @ResponseBody Map<String,String>  getUserAsset(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        String id=request.getParameter("id");
+    @RequestMapping(value="getUserAsset ",method= RequestMethod.POST)
+    public @ResponseBody Map<String,String>  getUserAsset(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        String id=requestcontent.getString("id");
 
 
         String[] args=new String[]{"getUserAsset",id};
 
 
 
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
 
-        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
-        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
-        System.out.println("transaction ok");
+//        String result=foorun.SendtTansactionToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),foobean.getSampleorgs(),args);
+//        // barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),args);
+//        System.out.println("transaction ok");
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println("result :"+result);
         JSONArray arr=JSONArray.fromObject(result);
         Map<String,String> map=new HashMap<String,String>();
@@ -362,5 +410,24 @@ public class UserController {
 
         return map;
     }
+    @RequestMapping(value = "getUser", method = RequestMethod.POST)
+    public @ResponseBody String getUser(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:" + body);
+        JSONObject requestcontent = JSONObject.fromObject(body);
+        System.out.println("requestcontent:" + requestcontent);
+        String id = requestcontent.getString("id");
 
+        String[] args = new String[]{"getUser", id};
+
+
+        String result = null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result = invoke.invoke();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
 }

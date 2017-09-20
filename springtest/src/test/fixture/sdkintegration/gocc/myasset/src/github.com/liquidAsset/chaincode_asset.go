@@ -8,7 +8,6 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
@@ -16,6 +15,7 @@ import (
 // SimpleChaincode example simple Chaincode implementation
 type SimpleChaincode struct {
 }
+
 
 type ProductProcess struct {
 	ProcessType   int `json:"processtype"`   //操作类型
@@ -43,11 +43,14 @@ type Product struct {
 
 //机构
 type Organizaton struct {
-	OrganizationID   string                              `json:"organizationid"`   //机构id
-	OrganizationName string                              `json:"organizationname"` //机构名称
-	OrganizationType int                                 `json:"organizationtype"` //机构类型
-	ProductMap       map[string](map[string]Transaction) `json:"productmap"`
+	OrganizationID   string `json:"organizationid"`   //机构id
+	OrganizationName string `json:"organizationname"` //机构名称
+	OrganizationType int    `json:"organizationtype"` //机构类型
+	ProductMap 	  map[string](map[string]Transaction) `json:"productmap"`
+
 }
+
+
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	fmt.Println("ex02 Init")
 	_, args := stub.GetFunctionAndParameters()
@@ -59,7 +62,6 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 
 	return shim.Success(nil)
 }
-
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	fmt.Println("ex02 Invoke")
 	function, args := stub.GetFunctionAndParameters()
@@ -71,33 +73,27 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	}
 	switch {
 
-	case args[0] == "UserLogin":
-		return t.UserLogin(stub, args)
 	case args[0] == "CreateUser":
 		return t.CreateUser(stub, args)
 	case args[0] == "getUserAsset":
+		fmt.Println("entering getuesrAsset")
 		return t.getUserAsset(stub, args)
-	case args[0] == "GetUserProduct":
-		return t.GetUserProduct(stub, args)
-	case args[0] == "getUserProductbyOrg":
-		return t.getUserProductbyOrg(stub, args)
-	case args[0] == "getUser":
-		return t.getUser(stub, args)
-	case args[0] == "WriteUser":
-		return t.WriteUser(stub, args)
 
 	case args[0] == "createOrganization":
 		return t.createOrganization(stub, args)
-	case args[0] == "getOrganization":
-		return t.getOrganization(stub, args)
-
-	case args[0] == "WriteOrganization":
-		return t.WriteOrganization(stub, args)
 	case args[0] == "CreateProduct":
 		return t.CreateProduct(stub, args)
 
 	case args[0] == "getProduct":
 		return t.getProduct(stub, args)
+	case args[0] == "getOrganization":
+		return t.getOrganization(stub, args)
+	case args[0] == "getUser":
+		return t.getUser(stub, args)
+	case args[0] == "WriteUser":
+		return t.WriteUser(stub, args)
+	case args[0] == "WriteOrganization":
+		return t.WriteOrganization(stub, args)
 	case args[0] == "WriteProduct":
 		return t.WriteProduct(stub, args)
 
@@ -115,7 +111,6 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 
 	return shim.Error("Unknown action,")
 }
-
 // query callback representing the query of a chaincode
 func (t *SimpleChaincode) query(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var A string // Entities

@@ -42,7 +42,6 @@ func RandInt(strlen int) string {
 	return data
 }
 
-
 func generate_transdata(number int ) {
 	var buffer bytes.Buffer
 	buffer.WriteString("[")
@@ -56,7 +55,7 @@ func generate_transdata(number int ) {
 		var idx string
 		idx = strconv.Itoa(i)
 		transaction.Transactionid =idx
-		transaction.Transactiondate = fmt.Sprintf("%v",time.Now().Unix())
+		transaction.Transactiondate = time.Now().Unix()
 		transaction.Parentorder =  idx
 		transaction.Suborder =  idx
 		transaction.Payid =  idx
@@ -102,6 +101,8 @@ func getTrans() []Transaction {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
+
+	fmt.Println("raw",string(raw))
 	var c []Transaction
 	json.Unmarshal(raw, &c)
 	return c

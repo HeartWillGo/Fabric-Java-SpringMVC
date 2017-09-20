@@ -1,14 +1,12 @@
 package main
-
 import (
 	"encoding/json"
 	"fmt"
 	"strconv"
 
-	"bytes"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
+	"bytes"
 )
 
 //用户
@@ -26,7 +24,6 @@ type User struct {
 	ProductMap     map[string]Product     `json:"productmap"`     //产品
 	TransactionMap map[string]Transaction `json:"transactionmap"` //交易
 }
-
 //用户登录
 func (t *SimpleChaincode) UserLogin(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 UserLogin")
@@ -64,7 +61,6 @@ func (t *SimpleChaincode) UserLogin(stub shim.ChaincodeStubInterface, args []str
 	}
 	return shim.Success(nil)
 }
-
 //用户查询当下的所有产品
 func (t *SimpleChaincode) GetUserProduct(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 WriteUser")
@@ -102,6 +98,7 @@ func (t *SimpleChaincode) GetUserProduct(stub shim.ChaincodeStubInterface, args 
 				return shim.Error("wrong value")
 			}
 			buffer.WriteString(string(productbytes))
+
 
 			fmt.Printf("产品：", key, "产品内容：", productbytes)
 			bArrayMemberAlreadyWritten = true
@@ -165,6 +162,7 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 	user.ProductMap = make(map[string]Product)
 	user.TransactionMap = make(map[string]Transaction)
 
+
 	jsons_users, err := json.Marshal(user) //转换成JSON返回的是byte[]
 	if err != nil {
 		return shim.Error(err.Error())
@@ -172,7 +170,7 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 	userbytes, err := stub.GetState(ID)
 	if err != nil {
 		return shim.Error("failed to return userbytes")
-	} else if userbytes != nil {
+	} else  if userbytes != nil {
 		return shim.Error(ID + "already have")
 	}
 	err = stub.PutState(ID, jsons_users)
@@ -183,7 +181,7 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 }
 
 //用户查询某机构的产品
-func (t *SimpleChaincode) getUserProductbyOrg(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+func (t *SimpleChaincode) getUserProductogOrg(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 WriteUser")
 
 	var userid string //用户ID
@@ -192,7 +190,7 @@ func (t *SimpleChaincode) getUserProductbyOrg(stub shim.ChaincodeStubInterface, 
 	var buffer bytes.Buffer
 
 	if len(args) != 3 {
-		return shim.Error("getUserProductbyOrg number of arguments. Expecting 3")
+		return shim.Error("getUserProductogOrg number of arguments. Expecting 3")
 	}
 
 	userid = args[1]
@@ -208,10 +206,13 @@ func (t *SimpleChaincode) getUserProductbyOrg(stub shim.ChaincodeStubInterface, 
 		return shim.Error("unmarshal user not successful")
 	}
 
+
 	buffer.WriteString("{")
 	bArrayMemberAlreadyWritten := false
 
 	for key, product_value := range user.ProductMap {
+
+
 
 		if product_value.OrganizationID == org_id {
 
@@ -234,7 +235,6 @@ func (t *SimpleChaincode) getUserProductbyOrg(stub shim.ChaincodeStubInterface, 
 	return shim.Success(buffer.Bytes())
 
 }
-
 //getUser 获取用户信息
 func (t *SimpleChaincode) getUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 getUser")
@@ -274,12 +274,13 @@ func (t *SimpleChaincode) WriteUser(stub shim.ChaincodeStubInterface, args []str
 	var BankCard string        //银行卡号
 	var PhoneNumber string     //手机号
 
+
 	// check if user
 	var user User
-	userinfo, err := stub.GetState(ID)
+	userinfo , err := stub.GetState(ID)
 	if err != nil {
 		return shim.Error("failed to get userinfo")
-	} else if userinfo == nil {
+	}	else if userinfo == nil {
 		return shim.Error("you should first create user!!!")
 	}
 	json.Unmarshal(userinfo, &user)
@@ -324,6 +325,4 @@ func (t *SimpleChaincode) WriteUser(stub shim.ChaincodeStubInterface, args []str
 	fmt.Printf(" CeateBank success \n")
 	return shim.Success(nil)
 }
-func (t *SimpleChaincode) getUserAsset(stub shim.ChaincodeStubInterface, argsw []string) pb.Response {
-	return shim.Success(nil)
-}
+
