@@ -41,6 +41,29 @@
    <artifactId>hibernate-entitymanager</artifactId>
    <version>${hibernate.version}</version>
   </dependency>
+  <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+  <dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>javax.servlet-api</artifactId>
+   <version>4.0.0-b07</version>
+   <scope>provided</scope>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
+  <dependency>
+   <groupId>net.sf.json-lib</groupId>
+   <artifactId>json-lib-ext-spring</artifactId>
+   <version>1.0.2</version>
+  </dependency>
+
+
+  <!-- https://mvnrepository.com/artifact/org.json/json -->
+  <dependency>
+   <groupId>org.json</groupId>
+   <artifactId>json</artifactId>
+   <version>20170516</version>
+  </dependency>
+
+
 
   <dependency>
    <groupId>org.hibernate</groupId>
@@ -77,20 +100,6 @@
    <artifactId>grpc-netty</artifactId>
    <version>1.6.0</version>
   </dependency>
-
-  <!-- https://mvnrepository.com/artifact/com.googlecode.protobuf-java-format/protobuf-java-format -->
-  <dependency>
-   <groupId>com.googlecode.protobuf-java-format</groupId>
-   <artifactId>protobuf-java-format</artifactId>
-   <version>1.4</version>
-  </dependency>
-  <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
-  <dependency>
-   <groupId>net.sf.json-lib</groupId>
-   <artifactId>json-lib-ext-spring</artifactId>
-   <version>1.0.2</version>
-  </dependency>
-
 
   <dependency>
    <groupId>io.grpc</groupId>

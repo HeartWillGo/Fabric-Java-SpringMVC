@@ -1,7 +1,6 @@
 package com.heartgo.controller;
 
 
-import com.google.gson.JsonObject;
 import org.apache.commons.codec.binary.Hex;
 import com.heartgo.myutil.ConfigHelper;
 import org.hyperledger.fabric.sdk.*;
@@ -94,11 +93,11 @@ public class RunChannel {
                 System.out.println("isFooChain");
 
                 ////For GO language and serving just a single user, chaincodeSource is mostly likely the users GOPATH
-                installProposalRequest.setChaincodeSourceLocation(new File(testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/asset"));
+                installProposalRequest.setChaincodeSourceLocation(new File(testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/myasset"));
             } else {
                 // On bar chain install from an input stream.
                 System.out.println("not isFooChain");
-                String str = testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/asset/" + "src/" + testConfig.CHAIN_CODE_PATH;
+                String str = testConfig.TEST_FIXTURES_PATH + "/sdkintegration/gocc/myasset/" + "src/" + testConfig.CHAIN_CODE_PATH;
                 System.out.println("run channel str" + str);
                 File file = new File(str);
                 installProposalRequest.setChaincodeInputStream(Util.generateTarGzInputStream(
@@ -157,7 +156,7 @@ public class RunChannel {
             instantiateProposalRequest.setProposalWaitTime(testConfig.getProposalWaitTime());
             instantiateProposalRequest.setChaincodeID(chaincodeID);
             instantiateProposalRequest.setFcn("init");
-            instantiateProposalRequest.setArgs(new String[]{ });
+            instantiateProposalRequest.setArgs(new String[]{"init"});
             Map<String, byte[]> tm = new HashMap<>();
             tm.put("HyperLedgerFabric", "InstantiateProposalRequest:JavaSDK".getBytes(UTF_8));
             tm.put("method", "InstantiateProposalRequest".getBytes(UTF_8));
@@ -193,6 +192,22 @@ public class RunChannel {
                 ProposalResponse first = failed.iterator().next();
                 //fail("Not enough endorsers for instantiate :" + successful.size() + "endorser failed with " + first.getMessage() + ". Was verified:" + first.isVerified());
             }
+
+            ///////////////
+            /// Send instantiate transaction to orderer
+            System.out.println("Sending instantiateTransaction to orderer without arguments");
+            channel.sendTransaction(successful, channel.getOrderers()).thenApply(transactionEvent -> {
+
+                if (transactionEvent.isValid()) {
+                    System.out.println("Finished transaction with transaction id " + transactionEvent.getTransactionID());
+                } else {
+                    System.out.println("Failed to sending instatiate transaction to orderer!");
+                }
+                // chain.shutdown(true);
+                return null;
+            }).get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -200,119 +215,115 @@ public class RunChannel {
 
     }
     /// Send transaction proposal to all peers
-    public  void SendtTansactionToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,SampleOrg sampleOrg,String[] transaction) {
+    public  String SendtTansactionToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,SampleOrg sampleOrg,String[] transaction) {
         try {
 
             Collection<Orderer> orderers = channel.getOrderers();
-            channel.sendTransaction(successful, orderers).thenApply(transactionEvent -> {
-                System.out.println("is Valid():" + transactionEvent.isValid());
-                System.out.println("Finished instantiate transaction with transaction id %s" + transactionEvent.getTransactionID());
-                try {
-                    successful.clear();
-                    failed.clear();
-                    client.setUserContext(sampleOrg.getUser(Config.TESTUSER_1_NAME));
-                    TransactionProposalRequest transactionProposalRequest = client.newTransactionProposalRequest();
-                    transactionProposalRequest.setChaincodeID(chaincodeID);
-                    transactionProposalRequest.setFcn("invoke");
-                    transactionProposalRequest.setProposalWaitTime(testConfig.getProposalWaitTime());
-                    transactionProposalRequest.setArgs(transaction);
 
-                    Map<String, byte[]> tm2 = new HashMap<>();
-                    tm2.put("HyperLedgerFabric", "TransactionProposalRequest:JavaSDK".getBytes(UTF_8)); //Just some extra junk in transient map
-                    tm2.put("method", "TransactionProposalRequest".getBytes(UTF_8)); // ditto
-                    tm2.put("result", ":)".getBytes(UTF_8));  // This should be returned see chaincode why.
-                    tm2.put(testConfig.EXPECTED_EVENT_NAME, testConfig.EXPECTED_EVENT_DATA);  //This should trigger an event see chaincode why.
+            successful.clear();
+            failed.clear();
+            client.setUserContext(sampleOrg.getUser(Config.TESTUSER_1_NAME));
+            TransactionProposalRequest transactionProposalRequest = client.newTransactionProposalRequest();
+            transactionProposalRequest.setChaincodeID(chaincodeID);
+            transactionProposalRequest.setFcn("invoke");
+            transactionProposalRequest.setProposalWaitTime(testConfig.getProposalWaitTime());
+            transactionProposalRequest.setArgs(transaction);
 
-                    transactionProposalRequest.setTransientMap(tm2);
+            Map<String, byte[]> tm2 = new HashMap<>();
+            tm2.put("HyperLedgerFabric", "TransactionProposalRequest:JavaSDK".getBytes(UTF_8)); //Just some extra junk in transient map
+            tm2.put("method", "TransactionProposalRequest".getBytes(UTF_8)); // ditto
+            tm2.put("result", ":)".getBytes(UTF_8));  // This should be returned see chaincode why.
+            tm2.put(testConfig.EXPECTED_EVENT_NAME, testConfig.EXPECTED_EVENT_DATA);  //This should trigger an event see chaincode why.
 
-                    out("sending transactionProposal to all peers with arguments: move(a,b,100)");
-                    try {
-                        Collection<ProposalResponse> transactionPropResp = channel.sendTransactionProposal(transactionProposalRequest, channel.getPeers());
+            transactionProposalRequest.setTransientMap(tm2);
 
-                        for (ProposalResponse response : transactionPropResp) {
-                            System.out.println("response.getStatus():" + response.getStatus());
-                            if (response.getStatus() == ProposalResponse.Status.SUCCESS) {
-                                out("Successful transaction proposal response Txid: %s from peer %s", response.getTransactionID(), response.getPeer().getName());
-                                successful.add(response);
-                            } else {
-                                failed.add(response);
-                            }
-                        }
+            out("sending transactionProposal to all peers with arguments: move(a,b,100)");
 
+            Collection<ProposalResponse> transactionPropResp = channel.sendTransactionProposal(transactionProposalRequest, channel.getPeers());
 
-                        // Check that all the proposals are consistent with each other. We should have only one set
-                        // where all the proposals above are consistent. Note the when sending to Orderer this is done automatically.
-                        //  Shown here as an example that applications can invoke and select.
-                        // See org.hyperledger.fabric.sdk.proposal.consistency_validation config property.
-                        Collection<Set<ProposalResponse>> proposalConsistencySets = SDKUtils.getProposalConsistencySets(transactionPropResp);
-                        if (proposalConsistencySets.size() != 1) {
-                            //fail(format("Expected only one set of consistent proposal responses but got %d", proposalConsistencySets.size()));
-                        }
-
-                        out("Received %d transaction proposal responses. Successful+verified: %d . Failed: %d",
-                                transactionPropResp.size(), successful.size(), failed.size());
-                        if (failed.size() > 0) {
-                            ProposalResponse firstTransactionProposalResponse = failed.iterator().next();
-                            //                        fail("Not enough endorsers for invoke(move a,b,100):" + failed.size() + " endorser error: " +
-                            //                                firstTransactionProposalResponse.getMessage() +
-                            //                                ". Was verified: " + firstTransactionProposalResponse.isVerified());
-                        }
-                        out("Successfully received transaction proposal responses.");
-
-                        ProposalResponse resp = transactionPropResp.iterator().next();
-                        byte[] x = resp.getChaincodeActionResponsePayload(); // This is the data returned by the chaincode.
-                        String resultAsString = null;
-                        try {
-                            if (x != null) {
-                                resultAsString = new String(x, "UTF-8");
-                            }
-
-                            System.out.println("resultAsString:" + resultAsString);
-                        }catch (UnsupportedEncodingException e){
-                            e.printStackTrace();
-                        }
-
-                        //
-                        System.out.println("response status:" + resp.getChaincodeActionResponseStatus()); //Chaincode's status.
-
-                        TxReadWriteSetInfo readWriteSetInfo = resp.getChaincodeActionResponseReadWriteSetInfo();
-                        System.out.println("readWriteSetInfo:" + readWriteSetInfo);
-                        //See blockwalker below how to transverse this
-                        //                    assertNotNull(readWriteSetInfo);
-                        //                    assertTrue(readWriteSetInfo.getNsRwsetCount() > 0);
-
-                        ChaincodeID cid = resp.getChaincodeID();
-                        //                    assertNotNull(cid);
-                        //                    assertEquals(CHAIN_CODE_PATH, cid.getPath());
-                        //                    assertEquals(CHAIN_CODE_NAME, cid.getName());
-                        //                    assertEquals(CHAIN_CODE_VERSION, cid.getVersion());
-                    } catch (ProposalException e) {
-                        e.printStackTrace();
-                    }
-                } catch (InvalidArgumentException e) {
-                    e.printStackTrace();
+            for (ProposalResponse response : transactionPropResp) {
+                System.out.println("response.getStatus():" + response.getStatus());
+                if (response.getStatus() == ProposalResponse.Status.SUCCESS) {
+                    out("Successful transaction proposal response Txid: %s from peer %s", response.getTransactionID(), response.getPeer().getName());
+                    successful.add(response);
+                } else {
+                    failed.add(response);
                 }
-                return null;
-            }).exceptionally(e -> {
-                if (e instanceof TransactionEventException) {
-                    BlockEvent.TransactionEvent te = ((TransactionEventException) e).getTransactionEvent();
-                    if (te != null) {
-                        System.out.println(format("Transaction with txid %s failed. %s", te.getTransactionID(), e.getMessage()));
-                    }
-                }
-                System.out.println(format("Test failed with %s exception %s", e.getClass().getName(), e.getMessage()));
+            }
 
+
+            // Check that all the proposals are consistent with each other. We should have only one set
+            // where all the proposals above are consistent. Note the when sending to Orderer this is done automatically.
+            //  Shown here as an example that applications can invoke and select.
+            // See org.hyperledger.fabric.sdk.proposal.consistency_validation config property.
+            Collection<Set<ProposalResponse>> proposalConsistencySets = SDKUtils.getProposalConsistencySets(transactionPropResp);
+            if (proposalConsistencySets.size() != 1) {
+                //fail(format("Expected only one set of consistent proposal responses but got %d", proposalConsistencySets.size()));
+            }
+
+            out("Received %d transaction proposal responses. Successful+verified: %d . Failed: %d",
+                    transactionPropResp.size(), successful.size(), failed.size());
+            if (failed.size() > 0) {
+                ProposalResponse firstTransactionProposalResponse = failed.iterator().next();
+                //                        fail("Not enough endorsers for invoke(move a,b,100):" + failed.size() + " endorser error: " +
+                //                                firstTransactionProposalResponse.getMessage() +
+                //                                ". Was verified: " + firstTransactionProposalResponse.isVerified());
+            }
+            out("Successfully received transaction proposal responses.");
+
+            ProposalResponse resp = transactionPropResp.iterator().next();
+            byte[] x = resp.getChaincodeActionResponsePayload(); // This is the data returned by the chaincode.
+            String resultAsString = null;
+            try {
+                if (x != null) {
+                    resultAsString = new String(x, "UTF-8");
+                }
+
+                System.out.println("resultAsString:" + resultAsString);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            //
+            System.out.println("response status:" + resp.getChaincodeActionResponseStatus()); //Chaincode's status.
+
+            TxReadWriteSetInfo readWriteSetInfo = resp.getChaincodeActionResponseReadWriteSetInfo();
+            System.out.println("readWriteSetInfo:" + readWriteSetInfo);
+            //See blockwalker below how to transverse this
+            //                    assertNotNull(readWriteSetInfo);
+            //                    assertTrue(readWriteSetInfo.getNsRwsetCount() > 0);
+
+            ChaincodeID cid = resp.getChaincodeID();
+            //                    assertNotNull(cid);
+            //                    assertEquals(CHAIN_CODE_PATH, cid.getPath());
+            //                    assertEquals(CHAIN_CODE_NAME, cid.getName());
+            //                    assertEquals(CHAIN_CODE_VERSION, cid.getVersion());
+            ///////////////
+            /// Send instantiate transaction to orderer
+            System.out.println("Sending instantiateTransaction to orderer without arguments");
+            channel.sendTransaction(successful, channel.getOrderers()).thenApply(transactionEvent -> {
+
+                if (transactionEvent.isValid()) {
+                    System.out.println("Finished transaction with transaction id " + transactionEvent.getTransactionID());
+                } else {
+                    System.out.println("Failed to sending instatiate transaction to orderer!");
+                }
+                // chain.shutdown(true);
                 return null;
             }).get(testConfig.getTransactionWaitTime(), TimeUnit.SECONDS);
-        } catch (Exception e) {
+
+
+
+        }catch (Exception e){
             e.printStackTrace();
         }
+
+            return null;
     }
     ////////////////////////////
     // Send Query Proposal to all peers
     //
-    public static String SendQuryToPeers(HFClient client, Channel channel, ChaincodeID chaincodeID, String[] query){
-        String payload=new String();
+    public static void SendQuryToPeers(HFClient client, Channel channel,ChaincodeID chaincodeID,String[] query){
         try {
 
             QueryByChaincodeRequest queryByChaincodeRequest = client.newQueryProposalRequest();
@@ -328,11 +339,11 @@ public class RunChannel {
             Collection<ProposalResponse> queryProposals = channel.queryByChaincode(queryByChaincodeRequest, channel.getPeers());
             for (ProposalResponse proposalResponse : queryProposals) {
                 if (!proposalResponse.isVerified() || proposalResponse.getStatus() != ProposalResponse.Status.SUCCESS) {
-//                            fail("Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() +
-//                                    ". Messages: " + proposalResponse.getMessage()
-//                                    + ". Was verified : " + proposalResponse.isVerified());
+                            System.out.println("Failed query proposal from peer " + proposalResponse.getPeer().getName() + " status: " + proposalResponse.getStatus() +
+                                    ". Messages: " + proposalResponse.getMessage()
+                                    + ". Was verified : " + proposalResponse.isVerified());
                 } else {
-                    payload = proposalResponse.getProposalResponse().getResponse().getPayload().toStringUtf8();
+                    String payload = proposalResponse.getProposalResponse().getResponse().getPayload().toStringUtf8();
                     out("Query payload of b from peer %s returned %s", proposalResponse.getPeer().getName(), payload);
                     //  assertEquals(payload, expect);
                 }
@@ -341,7 +352,6 @@ public class RunChannel {
             e.printStackTrace();
 
         }
-        return payload;
 
     }
 

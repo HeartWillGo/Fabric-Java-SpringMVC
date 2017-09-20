@@ -35,6 +35,14 @@
           <element id="library" level="project" name="Maven: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.20.0-GA" />
           <element id="library" level="project" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" />
+          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib-ext-spring:1.0.2" />
+          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.2.2" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.4" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.4" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
+          <element id="library" level="project" name="Maven: org.json:json:20170516" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-c3p0:5.1.0.Final" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
@@ -57,14 +65,6 @@
           <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.14.Final" />
           <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.14.Final" />
           <element id="library" level="project" name="Maven: io.netty:netty-codec-socks:4.1.14.Final" />
-          <element id="library" level="project" name="Maven: com.googlecode.protobuf-java-format:protobuf-java-format:1.4" />
-          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib-ext-spring:1.0.2" />
-          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.2.2" />
-          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
-          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2" />
-          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.4" />
-          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.4" />
-          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
           <element id="library" level="project" name="Maven: io.grpc:grpc-protobuf:1.6.0" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:19.0" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java-util:3.3.1" />

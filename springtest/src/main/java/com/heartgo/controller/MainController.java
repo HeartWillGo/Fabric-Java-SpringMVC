@@ -1,5 +1,4 @@
 package com.heartgo.controller;
-import com.google.gson.JsonObject;
 import com.heartgo.model.UserEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,13 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import net.sf.json.*;
-
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dzkan on 2016/3/8.
@@ -27,7 +22,7 @@ public class MainController {
 //    UserRepository userRepository;
     public  ClientBean foobean;
     public ClientBean barbean;
-    public End2end end=new End2end();
+    public End2end end=SingleEnd2End.getEnd2EndInstance();
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "admin/users";
@@ -36,40 +31,10 @@ public class MainController {
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String getUsers(ModelMap modelMap) {
         // 查询user表中所有记录
-        ArrayList<User> userList =new ArrayList<User>();
-        RunChannel foorun=foobean.getRunchannel();
-        RunChannel barrun=barbean.getRunchannel();
-        String[] str=new String[] {"query", "1"};
-        System.out.println("str:"+str.toString());
-        System.out.println("foobean:"+foobean);
-        System.out.println("barbean:"+barbean);
-        System.out.println("foorun success size:"+foorun.successful.size());
-        System.out.println("barrun success size:"+barrun.successful.size());
+     //   List<UserEntity> userList = userRepository.findAll();
 
-        String result_foo=foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
-
-        String[] result_arr=result_foo.split(",");
-        for(int i=0;i<result_arr.length;i++){
-            String[] query_str=new String[]{"query",result_arr[i]};
-            String result=foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),query_str);
-            JSONObject json_foo=JSONObject.fromObject(result_foo);
-            User user=new User();
-            user.setName(json_foo.getString("name"));
-
-
-
-
-
-        }
-
-        String reult_bar=barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
-        JSONObject json_foo=JSONObject.fromObject(result_foo);
-
-
-        System.out.println("name:"+json_foo.get("name"));
-
-        //将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("userList", userList);
+        // 将所有记录传递给要返回的jsp页面，放在userList当中
+      //  modelMap.addAttribute("userList", userList);
 
         // 返回pages目录下的admin/users.jsp页面
         return "admin/users";
@@ -177,12 +142,8 @@ public class MainController {
         System.out.println("foorun success size:"+foorun.successful.size());
         System.out.println("barrun success size:"+barrun.successful.size());
 
-        String result_foo=foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
-        String reult_bar=barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
-        JSONObject json_foo=JSONObject.fromObject(result_foo);
-
-
-        System.out.println("name:"+json_foo.get("name"));
+        foorun.SendQuryToPeers(foobean.getClient(),foobean.getChannel(),foobean.getChaincodeid(),str);
+        barrun.SendQuryToPeers(barbean.getClient(),barbean.getChannel(),barbean.getChaincodeid(),str);
         System.out.println("transaction ok");
 
         return "redirect:/admin/users";

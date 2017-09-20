@@ -68,8 +68,8 @@ public class Config {
     public static final String TESTUSER_1_NAME = "user1";
     public static final String TEST_FIXTURES_PATH = "/E:/Users/IdeaProjects/springtest/src/test/fixture";
 
-    public static final String CHAIN_CODE_NAME = "asset";
-    public static final String CHAIN_CODE_PATH = "github.com/chaincode_asset";
+    public static final String CHAIN_CODE_NAME = "newasset";
+    public static final String CHAIN_CODE_PATH = "github.com/liquidAsset";
     public static final String CHAIN_CODE_VERSION = "1";
 
     public static final String FOO_CHANNEL_NAME = "foo";
