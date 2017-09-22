@@ -9,55 +9,53 @@ import (
 	"time"
 )
 
-
 type UserAsset struct {
-	StatisticDate   string `json:"statistic_date"`
-	TradingEntityID string `json:"trading_entity_id"`
-	TransactionNum  int `json:"transaction_num"`
-	AssetType       string `json:"asset_type"`
-	AssetInfo       string `json:"asset_info"`
-	TradeStartTime  int64    `json:"trade_start_time"`
-	TradeEndTime    int64    `json:"trade_end_time"`
-	AssetBalance    float64    `json:"asset_balance"`
-	AssetIncome     float64    `json:"asset_income"`
-	AssetOutcome    float64    `json:"asset_outcome"`
-	OrganizatonMap map[string]*OrganizationAsset `json:"organization_Map"`
-	ProductMap     map[string]*ProductAsset `json:"productmap"`
-
+	StatisticDate   string                        `json:"statistic_date"`
+	TradingEntityID string                        `json:"trading_entity_id"`
+	TransactionNum  int                           `json:"transaction_num"`
+	AssetType       string                        `json:"asset_type"`
+	AssetInfo       string                        `json:"asset_info"`
+	TradeStartTime  int64                         `json:"trade_start_time"`
+	TradeEndTime    int64                         `json:"trade_end_time"`
+	AssetBalance    float64                       `json:"asset_balance"`
+	AssetIncome     float64                       `json:"asset_income"`
+	AssetOutcome    float64                       `json:"asset_outcome"`
+	OrganizatonMap  map[string]*OrganizationAsset `json:"organization_Map"`
+	ProductMap      map[string]*ProductAsset      `json:"productmap"`
 }
 type OrganizationAsset struct {
-	ID             string  `json:"id"`
-	StatisticDate   string `json:"statistic_date"`
+	ID            string `json:"id"`
+	StatisticDate string `json:"statistic_date"`
 
-	Type           int      `json:"type"`
-	TransactionNum int64    `json:"transactionnum"`
-	TradestartTime int64    `json:"tradestarttime"`
-	TradeendTime   int64    `json:"tradeendtime"`
-	Balance        float64    `json:"balance"`
-	Outcome        float64    `json:"outcome"`
-	Income         float64    `json:"income"`
+	Type           int     `json:"type"`
+	TransactionNum int64   `json:"transactionnum"`
+	TradestartTime int64   `json:"tradestarttime"`
+	TradeendTime   int64   `json:"tradeendtime"`
+	Balance        float64 `json:"balance"`
+	Outcome        float64 `json:"outcome"`
+	Income         float64 `json:"income"`
 
-	ProductMap     map[string]*ProductAsset `json:"productmap"`
-	UserMap 	   map[string]*UserAsset `json:"asset"`
-
+	ProductMap map[string]*ProductAsset `json:"productmap"`
+	UserMap    map[string]*UserAsset    `json:"asset"`
 }
 type ProductAsset struct {
-	ID             string `json:"id"`
-	StatisticDate   string `json:"statistic_date"`
-	Tradestarttime int64    `json:"tradestarttime"`
-	Tradeendtime   int64    `json:"tradeendtime"`
-	TransactionNum int64  `json:"transactionum"`
-	Balance        float64    `json:"balance"`
-	Outcome        float64    `json:"outcome"`
-	Income         float64    `json:"income"`
-	UserMap 	   map[string]*UserAsset `json:"asset"`
+	ID             string                `json:"id"`
+	StatisticDate  string                `json:"statistic_date"`
+	Tradestarttime int64                 `json:"tradestarttime"`
+	Tradeendtime   int64                 `json:"tradeendtime"`
+	TransactionNum int64                 `json:"transactionum"`
+	Balance        float64               `json:"balance"`
+	Outcome        float64               `json:"outcome"`
+	Income         float64               `json:"income"`
+	UserMap        map[string]*UserAsset `json:"asset"`
 }
 
 type RecordTransaction struct {
-	Key    string `json:"Key"`
+	Key    string      `json:"Key"`
 	Record Transaction `json:"Record"`
 }
-func computeAssetByUserID(statisticID string,  transactionBytes []byte) UserAsset {
+
+func computeAssetByUserID(statisticID string, transactionBytes []byte) UserAsset {
 	var asset UserAsset
 	var recordTransaction []RecordTransaction
 	asset.TradingEntityID = statisticID
@@ -106,11 +104,10 @@ func computeAssetByUserID(statisticID string,  transactionBytes []byte) UserAsse
 		}
 		asset.OrganizatonMap[tran.Organizationid].TransactionNum += 1
 
-		if AlreadyCreateProductMap  == false {
+		if AlreadyCreateProductMap == false {
 			asset.OrganizatonMap[tran.Organizationid].ProductMap = make(map[string]*ProductAsset)
 		}
 		AlreadyCreateProductMap = true
-
 
 		//记录产品的数据
 		_, ok = asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid]
@@ -119,7 +116,7 @@ func computeAssetByUserID(statisticID string,  transactionBytes []byte) UserAsse
 			asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid] = &ProductAsset{ID: tran.Productid}
 		}
 
-		asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradeendtime   = findMax(asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradeendtime, tran.Transactiondate)
+		asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradeendtime = findMax(asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradeendtime, tran.Transactiondate)
 		asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradestarttime = findMin(asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Tradestarttime, tran.Transactiondate)
 		if statisticID == tran.Fromid {
 			asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].Outcome += tran.Amount * tran.Price
@@ -128,7 +125,6 @@ func computeAssetByUserID(statisticID string,  transactionBytes []byte) UserAsse
 
 		}
 		asset.OrganizatonMap[tran.Organizationid].ProductMap[tran.Productid].TransactionNum += 1
-
 
 	}
 	asset.AssetBalance = asset.AssetIncome - asset.AssetOutcome
@@ -145,19 +141,19 @@ func computeProductSaleInformation(transactionBytes []byte) ProductAsset {
 	}
 	productAsset.StatisticDate = fmt.Sprintf("%v", time.Now().Unix())
 
-	for _, record := range recordTransaction{
+	for _, record := range recordTransaction {
 		productAsset.TransactionNum += 1
 		tran := record.Record
 		productAsset.Balance += tran.Amount * tran.Price
 		productAsset.ID = tran.Productid
 		productAsset.Tradestarttime = findMin(productAsset.Tradestarttime, tran.Transactiondate)
-		productAsset.Tradeendtime   = findMax(productAsset.Tradeendtime, tran.Transactiondate)
+		productAsset.Tradeendtime = findMax(productAsset.Tradeendtime, tran.Transactiondate)
 	}
 	return productAsset
 
 }
 
-func computeProductAllUser(transactionBytes []byte) []byte {
+func computeProductAllUser(transactionBytes []byte) ProductAsset {
 
 	var recordTransaction []RecordTransaction
 	var productAsset ProductAsset
@@ -167,14 +163,14 @@ func computeProductAllUser(transactionBytes []byte) []byte {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	for _, record := range recordTransaction{
+	for _, record := range recordTransaction {
 		tran := record.Record
 
-		 _, ok := productAsset.UserMap[tran.Toid]
+		_, ok := productAsset.UserMap[tran.Toid]
 		if ok == false {
-			productAsset.UserMap[tran.Toid] = &UserAsset{TradingEntityID:tran.Toid}
-			productAsset.ID = tran.Organizationid
-			productAsset.StatisticDate =  fmt.Sprintf("%v", time.Now().Unix())
+			productAsset.UserMap[tran.Toid] = &UserAsset{TradingEntityID: tran.Toid}
+			productAsset.ID = tran.Productid
+			productAsset.StatisticDate = fmt.Sprintf("%v", time.Now().Unix())
 
 		}
 		productAsset.TransactionNum += 1
@@ -182,12 +178,8 @@ func computeProductAllUser(transactionBytes []byte) []byte {
 		productAsset.UserMap[tran.Toid].AssetBalance += tran.Amount * tran.Price
 		productAsset.UserMap[tran.Toid].TransactionNum += 1
 	}
-	productAssetBytes, err  := json.Marshal(productAsset)
-	if err != nil {
-		fmt.Println("marshal userOperateProductMapBytes Wrong")
-	}
 
-	return productAssetBytes
+	return productAsset
 
 }
 
@@ -202,12 +194,13 @@ func computeOrgnazitionAllProduct(transactionBytes []byte) OrganizationAsset {
 	organizationAsset.StatisticDate = fmt.Sprintf("%v", time.Now().Unix())
 	organizationAsset.ProductMap = make(map[string]*ProductAsset)
 	AlreadyCreateUser := false
-	for _, record := range recordTransaction{
+	for _, record := range recordTransaction {
 		tran := record.Record
 
 		_, ok := organizationAsset.ProductMap[tran.Productid]
 		if !ok {
-			organizationAsset.ProductMap[tran.Productid] = &ProductAsset{ID:tran.Productid}
+			organizationAsset.ProductMap[tran.Productid] = &ProductAsset{ID: tran.Productid}
+			organizationAsset.ID = tran.Organizationid
 		}
 		organizationAsset.TransactionNum += 1
 		organizationAsset.Balance += tran.Amount * tran.Price
@@ -235,7 +228,7 @@ func computeOrgnazitionAllProduct(transactionBytes []byte) OrganizationAsset {
 		//
 
 	}
-	organizationAssetBytes, err  := json.Marshal(organizationAsset)
+	organizationAssetBytes, err := json.Marshal(organizationAsset)
 	if err != nil {
 		fmt.Println("marshal userOperateProductMapBytes Wrong")
 	}
@@ -255,17 +248,17 @@ func computeOrgnazitionAllUser(transactionBytes []byte) OrganizationAsset {
 	organizationAsset.StatisticDate = fmt.Sprintf("%v", time.Now().Unix())
 	organizationAsset.UserMap = make(map[string]*UserAsset)
 	AlreadyCreateUser := false
-	for _, record := range recordTransaction{
+	for _, record := range recordTransaction {
 		tran := record.Record
 
 		_, ok := organizationAsset.UserMap[tran.Toid]
 		if !ok {
-			organizationAsset.UserMap[tran.Toid] = &UserAsset{TradingEntityID:tran.Toid}
+			organizationAsset.UserMap[tran.Toid] = &UserAsset{TradingEntityID: tran.Toid}
 			organizationAsset.ID = tran.Organizationid
 		}
 		_, ok = organizationAsset.UserMap[tran.Fromid]
 		if !ok {
-			organizationAsset.UserMap[tran.Fromid] = &UserAsset{TradingEntityID:tran.Fromid}
+			organizationAsset.UserMap[tran.Fromid] = &UserAsset{TradingEntityID: tran.Fromid}
 		}
 
 		organizationAsset.TransactionNum += 1
@@ -297,7 +290,7 @@ func computeOrgnazitionAllUser(transactionBytes []byte) OrganizationAsset {
 		//
 
 	}
-	organizationAssetBytes, err  := json.Marshal(organizationAsset)
+	organizationAssetBytes, err := json.Marshal(organizationAsset)
 	if err != nil {
 		fmt.Println("marshal userOperateProductMapBytes Wrong")
 	}
@@ -307,7 +300,7 @@ func computeOrgnazitionAllUser(transactionBytes []byte) OrganizationAsset {
 }
 
 func findMax(num1 int64, num2 int64) int64 {
-	if num1 > num2  {
+	if num1 > num2 {
 		return num1
 	} else {
 		return num2

@@ -58,5 +58,48 @@ public class TransactionController
 
         return result;
     }
+    @RequestMapping(value="getTransactionByTransactionidRange",method= RequestMethod.POST)
+    public @ResponseBody String  getTransactionByTransactionidRange(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        System.out.println("requestcontent:"+requestcontent);
+        String start=requestcontent.getString ("start");
+        String end=requestcontent.getString ("end");
+
+        String[] args=new String[]{"getTransactionByTransactionidRange",start,end};
+
+
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
+    @RequestMapping(value="getTransactionByOrganizationid",method= RequestMethod.POST)
+    public @ResponseBody String  getTransactionByOrganizationid(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:"+body);
+        JSONObject requestcontent=JSONObject.fromObject(body);
+        System.out.println("requestcontent:"+requestcontent);
+        String organizationid=requestcontent.getString ("organizationid");
+
+        String[] args=new String[]{"getTransactionByOrganizationid",organizationid};
+
+
+        String result=null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result=invoke.invoke();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return result;
+    }
 
 }

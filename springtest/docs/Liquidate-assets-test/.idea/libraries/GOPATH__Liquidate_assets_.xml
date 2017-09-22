@@ -1,0 +1,54 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;Liquidate-assets&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../view_asset" />
+      <root url="file://$PROJECT_DIR$/../../regex" />
+      <root url="file://$PROJECT_DIR$/.." />
+      <root url="file://$PROJECT_DIR$/../../go-vintage" />
+      <root url="file://$PROJECT_DIR$/../../SpringMVCDemo" />
+      <root url="file://$PROJECT_DIR$/../../2017-6-8" />
+      <root url="file://$PROJECT_DIR$/../../20170630" />
+      <root url="file://$PROJECT_DIR$/../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../fabric-sdk-java" />
+      <root url="file://$PROJECT_DIR$/../../Liquidate-assets" />
+      <root url="file://$PROJECT_DIR$/../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../git.intra.weibo.com" />
+      <root url="file://$PROJECT_DIR$/../../motan-go" />
+      <root url="file://$PROJECT_DIR$/../../test" />
+      <root url="file://$PROJECT_DIR$/../../pingan" />
+      <root url="file://$PROJECT_DIR$/../../go-restful" />
+      <root url="file://$PROJECT_DIR$/../../pingan-restful-api" />
+      <root url="file://$PROJECT_DIR$/../../tns-restful-json-api" />
+      <root url="file://$PROJECT_DIR$/../../springtest" />
+      <root url="file://$PROJECT_DIR$/../../Fabric-Java-SpringMVC" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../view_asset" />
+      <root url="file://$PROJECT_DIR$/../../regex" />
+      <root url="file://$PROJECT_DIR$/.." />
+      <root url="file://$PROJECT_DIR$/../../go-vintage" />
+      <root url="file://$PROJECT_DIR$/../../SpringMVCDemo" />
+      <root url="file://$PROJECT_DIR$/../../2017-6-8" />
+      <root url="file://$PROJECT_DIR$/../../20170630" />
+      <root url="file://$PROJECT_DIR$/../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../fabric-sdk-java" />
+      <root url="file://$PROJECT_DIR$/../../Liquidate-assets" />
+      <root url="file://$PROJECT_DIR$/../../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../git.intra.weibo.com" />
+      <root url="file://$PROJECT_DIR$/../../motan-go" />
+      <root url="file://$PROJECT_DIR$/../../test" />
+      <root url="file://$PROJECT_DIR$/../../pingan" />
+      <root url="file://$PROJECT_DIR$/../../go-restful" />
+      <root url="file://$PROJECT_DIR$/../../pingan-restful-api" />
+      <root url="file://$PROJECT_DIR$/../../tns-restful-json-api" />
+      <root url="file://$PROJECT_DIR$/../../springtest" />
+      <root url="file://$PROJECT_DIR$/../../Fabric-Java-SpringMVC" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

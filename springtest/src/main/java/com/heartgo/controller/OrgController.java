@@ -381,14 +381,81 @@ public class OrgController {
     @RequestMapping(value = "createOrganization", method = RequestMethod.POST)
     public @ResponseBody String createOrganization(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("body:" + body);
+//        JSONObject requestcontent = JSONObject.fromObject(body);
+//        System.out.println("requestcontent:" + requestcontent);
+//        String ID = requestcontent.getString("ID");
+//
+//        String OrganizationName = requestcontent.getString("OrganizationName");
+//        String OrganizationType = requestcontent.getString("OrganizationType");
+
+        String[] args = new String[]{"createOrganization", body};
+
+
+        String result = null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result = invoke.invoke();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+    @RequestMapping(value = "getOrganizationProduct", method = RequestMethod.POST)
+    public @ResponseBody String getOrganizationProduct(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:" + body);
         JSONObject requestcontent = JSONObject.fromObject(body);
         System.out.println("requestcontent:" + requestcontent);
         String ID = requestcontent.getString("ID");
 
-        String OrganizationName = requestcontent.getString("OrganizationName");
-        String OrganizationType = requestcontent.getString("OrganizationType");
 
-        String[] args = new String[]{"createOrganization", ID,OrganizationName,OrganizationType};
+
+        String[] args = new String[]{"getOrganizationProduct", ID};
+
+
+        String result = null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result = invoke.invoke();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+    @RequestMapping(value = "getOrganizationAsset", method = RequestMethod.POST)
+    public @ResponseBody String getOrganizationAsset(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:" + body);
+        JSONObject requestcontent = JSONObject.fromObject(body);
+        System.out.println("requestcontent:" + requestcontent);
+        String ID = requestcontent.getString("ID");
+
+
+
+        String[] args = new String[]{"getOrganizationAsset", ID};
+
+
+        String result = null;
+        try {
+            InvokeChainCode invoke = new InvokeChainCode(args);
+            result = invoke.invoke();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+    @RequestMapping(value = "getOrganizationUser", method = RequestMethod.POST)
+    public @ResponseBody String getOrganizationUser(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("body:" + body);
+        JSONObject requestcontent = JSONObject.fromObject(body);
+        System.out.println("requestcontent:" + requestcontent);
+        String ID = requestcontent.getString("ID");
+
+
+
+        String[] args = new String[]{"getOrganizationUser", ID};
 
 
         String result = null;

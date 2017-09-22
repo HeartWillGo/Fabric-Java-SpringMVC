@@ -10,7 +10,6 @@ import (
 	"bytes"
 )
 
-
 //机构
 type Organization struct {
 	OrganizationID   string `json:"organizationid"`   //机构id
@@ -22,9 +21,7 @@ type Organization struct {
 func (t *SimpleChaincode) createOrganization(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 createOrganization")
 
-
-
-	if len(args) != 3 {
+	if len(args) != 2 {
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
@@ -34,8 +31,6 @@ func (t *SimpleChaincode) createOrganization(stub shim.ChaincodeStubInterface, a
 	if err != nil {
 		return shim.Error(err.Error())
 	}
-
-
 
 	OrganizationBytes, err := stub.GetState(organization.OrganizationID)
 	if err != nil {
@@ -52,6 +47,7 @@ func (t *SimpleChaincode) createOrganization(stub shim.ChaincodeStubInterface, a
 
 	return shim.Success(nil)
 }
+
 //getOrganization 获取机构信息
 func (t *SimpleChaincode) getOrganization(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 getOrganization")
@@ -62,8 +58,6 @@ func (t *SimpleChaincode) getOrganization(stub shim.ChaincodeStubInterface, args
 	if len(args) != 2 {
 		return shim.Error("Incorrect number of arguments. Expecting 1")
 	}
-
-	// Initialize the chaincode
 
 	Organization_ID = args[1]
 
@@ -89,10 +83,10 @@ func (t *SimpleChaincode) WriteOrganization(stub shim.ChaincodeStubInterface, ar
 	return shim.Success(nil)
 }
 
-func (t *SimpleChaincode) getTransactionByOrganizationid(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *SimpleChaincode) getTransactionByOrganizationid(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x07 getProductTransactionByProductID")
 
-	if len(args) != 2{
+	if len(args) != 2 {
 		return shim.Error("Expecting 2, you are wrong")
 	}
 	organizationid := args[1:]
@@ -122,10 +116,10 @@ func (t *SimpleChaincode) getTransactionByOrganizationid(stub shim.ChaincodeStub
 			return shim.Error("we cannot splitcompositekey")
 		}
 		if objectType != "Organizationid~Transactionid" {
-			return shim.Error("object is not we want " +  organizationid[0])
+			return shim.Error("object is not we want " + organizationid[0])
 		}
 		transactionid := compositeKeyParts[len(compositeKeyParts)-1]
-		transactionBytes,err := stub.GetState(transactionid)
+		transactionBytes, err := stub.GetState(transactionid)
 		if err != nil {
 			return shim.Error("the transactionid is not put in the ledger")
 		}
@@ -184,7 +178,7 @@ func (t *SimpleChaincode) getOrganizationAsset(stub shim.ChaincodeStubInterface,
 
 	return shim.Success(productAssetBytes)
 }
-func (t *SimpleChaincode) getOrganizationUser(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *SimpleChaincode) getOrganizationUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x11 getOrganizationUser")
 
 	if len(args) != 2 {

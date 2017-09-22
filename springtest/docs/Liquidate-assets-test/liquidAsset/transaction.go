@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"bytes"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
-	"bytes"
 )
 
 // 账本数据
@@ -18,29 +18,26 @@ type Transaction struct {
 	OriginSID         string `json:"OriginSID"`
 	RequestSerial     string `json:"RequestSerial"`
 	NextRequestSerial string `json:"NextRequestSerial"`
-	Proposaltime      int64   `json:"Proposaltime"`
+	Proposaltime      int64  `json:"Proposaltime"`
 	//交易ID,区块链中的索引
-	Transactionid     string `json:"transactionid"`
-	Transactiondate   int64    `json:"transactiondate"`
-	Parentorder       string `json:"parentorder"`
-	Suborder          string `json:"suborder"`
-	Payid             string `json:"payid"`
+	Transactionid   string `json:"transactionid"`
+	Transactiondate int64  `json:"transactiondate"`
+	Parentorder     string `json:"parentorder"`
+	Suborder        string `json:"suborder"`
+	Payid           string `json:"payid"`
 	//交易双方
-	Transtype         string `json:"transtype"`
-	Fromtype          int    `json:"fromtype"`
-	Fromid            string `json:"fromid"`
-	Totype            int    `json:"totype"`
-	Toid              string `json:"toid"`
+	Transtype string `json:"transtype"`
+	Fromtype  int    `json:"fromtype"`
+	Fromid    string `json:"fromid"`
+	Totype    int    `json:"totype"`
+	Toid      string `json:"toid"`
 	//实际内容
-	Productid         string `json:"productid"`
-	Productinfo       string `json:"productinfo"`
-	Organizationid    string `json:"organizationid"`
-	Amount            float64    `json:"amount"`
-	Price             float64    `json:"price"`
+	Productid      string  `json:"productid"`
+	Productinfo    string  `json:"productinfo"`
+	Organizationid string  `json:"organizationid"`
+	Amount         float64 `json:"amount"`
+	Price          float64 `json:"price"`
 }
-
-
-
 
 //交易信息入链,创建索引信息
 //args[0] functionname string
@@ -68,7 +65,6 @@ func (t *SimpleChaincode) Transaction(stub shim.ChaincodeStubInterface, args []s
 	stub.GetTxTimestamp()
 	value := []byte{0x00}
 
-
 	// Fromid~Transactionid
 	Fromid_Transactionid, err := stub.CreateCompositeKey("Fromid~Transactionid", []string{transaction.Fromid, transaction.Transactionid})
 	if err != nil {
@@ -78,7 +74,7 @@ func (t *SimpleChaincode) Transaction(stub shim.ChaincodeStubInterface, args []s
 
 	// Fromid~Productid~Transactionid
 	Fromid_Productid_Transactionid, err := stub.CreateCompositeKey("Fromid~Productid~Transactionid", []string{transaction.Fromid,
-																	transaction.Productid, transaction.Transactionid})
+		transaction.Productid, transaction.Transactionid})
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -138,18 +134,16 @@ func (t *SimpleChaincode) Transaction(stub shim.ChaincodeStubInterface, args []s
 	}
 	stub.PutState(Organizationid_Transactionid, value)
 
-
-
 	// Organizationid~Fromid
 	Organizationid_Fromid, err := stub.CreateCompositeKey("Organizationid~Fromid", []string{transaction.Organizationid, transaction.Fromid})
 	if err != nil {
 		return shim.Error(err.Error())
 	}
-	stub.PutState(Organizationid_Fromid,value)
+	stub.PutState(Organizationid_Fromid, value)
 
 	// Organizationid~Fromid~Productid
 	Organizationid_Fromid_Productid, err := stub.CreateCompositeKey("Organizationid~Fromid~Productid", []string{transaction.Organizationid,
-																	transaction.Fromid, transaction.Productid})
+		transaction.Fromid, transaction.Productid})
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -164,13 +158,13 @@ func (t *SimpleChaincode) Transaction(stub shim.ChaincodeStubInterface, args []s
 
 	// Organizationid~Toid~Productid
 	Organizationid_Toid_Productid, err := stub.CreateCompositeKey("Organizationid~Toid~Productid", []string{transaction.Organizationid,
-																	transaction.Toid, transaction.Productid})
+		transaction.Toid, transaction.Productid})
 	if err != nil {
 		return shim.Error(err.Error())
 	}
-	stub.PutState(Organizationid_Toid_Productid,value)
+	stub.PutState(Organizationid_Toid_Productid, value)
 
-// ================
+	// ================
 	return shim.Success(nil)
 }
 
@@ -204,7 +198,7 @@ func (t *SimpleChaincode) getTransactionByID(stub shim.ChaincodeStubInterface, a
 //args[0] functionname string
 //args[1] userid string
 //args = []string {"getTransactionByUserID", "1"}
-func  (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterface, args []string) pb.Response  {
+func (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x0303 getTransactionByUserID")
 	if len(args) != 2 {
 		return shim.Error("Incorrect number of arguments. Expecting 2")
@@ -239,11 +233,11 @@ func  (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterfa
 			return shim.Error("we cannot splitcompositekey")
 		}
 		if objectType != "Fromid~Transactionid" {
-			return shim.Error("object is not we want %s"+ Fromid[0])
+			return shim.Error("object is not we want %s" + Fromid[0])
 		}
 		transactionid := compositeKeyParts[len(compositeKeyParts)-1]
 
-		transactionBytes,err := stub.GetState(transactionid)
+		transactionBytes, err := stub.GetState(transactionid)
 		if err != nil {
 			return shim.Error("the transactionid is not put in the ledger")
 		}
@@ -261,12 +255,11 @@ func  (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterfa
 	}
 
 	transactionToidResultsIterator, err := stub.GetStateByPartialCompositeKey("Toid~Transactionid",
-																[]string{"1"})
+		[]string{"1"})
 	if err != nil {
 		return shim.Error("wrong")
 	}
 	defer transactionToidResultsIterator.Close()
-
 
 	for transactionToidResultsIterator.HasNext() {
 		// Note that we don't get the value (2nd return variable), we'll just get the marble name from the composite key
@@ -284,11 +277,11 @@ func  (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterfa
 		}
 		if objectType != "Toid~Transactionid" {
 			fmt.Println("objectType", objectType)
-			return shim.Error("object is not we want %s"+ Fromid[0])
+			return shim.Error("object is not we want %s" + Fromid[0])
 		}
 		transactionid := compositeKeyParts[len(compositeKeyParts)-1]
 
-		transactionBytes,err := stub.GetState(transactionid)
+		transactionBytes, err := stub.GetState(transactionid)
 		if err != nil {
 			return shim.Error("the transactionid is not put in the ledger")
 		}
@@ -307,11 +300,10 @@ func  (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterfa
 	return shim.Success(buffer.Bytes())
 }
 
-
 //args[0] functionname string
 //args[1] userid string
 //args = []string {"getTransactionByTransactionidRange", "startkey","endkey"}
-func  (t *SimpleChaincode) getTransactionByTransactionidRange(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+func (t *SimpleChaincode) getTransactionByTransactionidRange(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	fmt.Println("0x04 getTransactionByTransactionidRange")
 	if len(args) != 3 {
@@ -357,10 +349,6 @@ func  (t *SimpleChaincode) getTransactionByTransactionidRange(stub shim.Chaincod
 	}
 	buffer.WriteString("]")
 
-
 	return shim.Success(buffer.Bytes())
 
-
 }
-
-
