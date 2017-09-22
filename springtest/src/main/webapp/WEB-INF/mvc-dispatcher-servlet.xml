@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!--指明 controller 所在包，并扫描其中的注解-->
-    <context:component-scan base-package="com.heartgo.controller"/>
+    <context:component-scan base-package="com.pingan.controller"/>
     <!-- 静态资源(js、image等)的访问 -->
     <mvc:default-servlet-handler/>
     <!-- 开启注解 -->
@@ -24,7 +24,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 表示JPA Repository所在的包 -->
-    <jpa:repositories base-package="com.heartgo.respository"/>
+    <jpa:repositories base-package="com.pingan.respository"/>
 
     <!-- 链接到persistence.xml -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
