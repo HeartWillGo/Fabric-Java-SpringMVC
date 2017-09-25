@@ -45,7 +45,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class Config {
     private static final Log logger = LogFactory.getLog(Config.class);
 
-    private static final String DEFAULT_CONFIG = "/E:/Users/IdeaProjects/springtest/src/test/java/org/hyperledger/fabric/sdk/testutils.properties";
+    private static final String DEFAULT_CONFIG = "/home/heartgo/mywebproject/Fabric-Java-SpringMVC/springtest/src/test/java/org/hyperledger/fabric/sdk/testutils.properties";
     private static final String ORG_HYPERLEDGER_FABRIC_SDK_CONFIGURATION = "org.hyperledger.fabric.sdktest.configuration";
 
     private static final String PROPBASE = "org.hyperledger.fabric.sdktest.";
@@ -68,7 +68,7 @@ public class Config {
     //配置
     public  static final String TEST_ADMIN_NAME = "admin";
     public static final String TESTUSER_1_NAME = "user1";
-    public static final String TEST_FIXTURES_PATH = "/E:/Users/IdeaProjects/springtest/src/test/fixture";
+    public static final String TEST_FIXTURES_PATH = "/home/heartgo/mywebproject/Fabric-Java-SpringMVC/springtest/src/test/fixture";
 
     public static final String CHAIN_CODE_NAME = "newasset";
     public static final String CHAIN_CODE_PATH = "github.com/liquidAsset";
@@ -180,7 +180,7 @@ public class Config {
                 sampleOrg.setCAName(sdkProperties.getProperty((INTEGRATIONTESTS_ORG + org.getKey() + ".caName")));
 
                 if (runningFabricCATLS) {
-                    String cert = "/E:/Users/IdeaProjects/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel/crypto-config/peerOrganizations/DNAME/ca/ca.DNAME-cert.pem".replaceAll("DNAME", domainName);
+                    String cert = "/home/heartgo/mywebproject/Fabric-Java-SpringMVC/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel/crypto-config/peerOrganizations/DNAME/ca/ca.DNAME-cert.pem".replaceAll("DNAME", domainName);
                     File cf = new File(cert);
                     if (!cf.exists() || !cf.isFile()) {
                         throw new RuntimeException("TEST is missing cert file " + cf.getAbsolutePath());
@@ -327,7 +327,7 @@ public class Config {
 
     public String getTestChannelPath() {
 
-        return "/E:/Users/IdeaProjects/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel";
+        return "/home/heartgo/mywebproject/Fabric-Java-SpringMVC/springtest/src/test/fixture/sdkintegration/e2e-2Orgs/channel";
 
     }
 
