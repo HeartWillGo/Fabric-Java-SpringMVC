@@ -26,10 +26,7 @@ public class DeployChaincode {
 	private static final Log logger = LogFactory.getLog(DeployChaincode.class);
 
 	public void install() throws Exception {
-        SetupUsers setupUsers=new SetupUsers();
-        setupUsers.setup();
-        ReconstructChannel constructChannel=new ReconstructChannel();
-        constructChannel.reconstructchannel();
+
 		// Get Org1
 		SampleOrg sampleOrg = clientHelper.getSamleOrg();
 

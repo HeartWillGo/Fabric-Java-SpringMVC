@@ -36,17 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/blockchain/user/*")
 public class UserController {
 
-    @RequestMapping(value = "install", method = RequestMethod.GET)
-    public @ResponseBody String Inatall() {
 
-         try {
-             DeployChaincode deploy = new DeployChaincode();
-             deploy.install();
-         }catch (Exception e){
-             e.printStackTrace();
-         }
-        return "success";
-    }
     //用户登录
     @RequestMapping(value="login",method= RequestMethod.GET)
     public @ResponseBody String UserLogin(@RequestBody String body,HttpServletRequest request,HttpServletResponse response) throws IOException{

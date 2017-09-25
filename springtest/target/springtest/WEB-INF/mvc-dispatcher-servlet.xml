@@ -18,7 +18,7 @@
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
     <!--ViewResolver 视图解析器-->
-    <mvc:resources mapping="../js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
     <!--用于支持Servlet、JSP视图解析-->
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
