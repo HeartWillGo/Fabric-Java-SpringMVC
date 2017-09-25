@@ -287,16 +287,16 @@ public class UserController {
         String[] args=new String[]{"query",id };
 
 
-
-
+        String result=null;
         try {
             InvokeChainCode invoke = new InvokeChainCode(args);
-            invoke.invoke();
+            result=invoke.invoke();
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return "success";
+
+        return result;
     }
 
     //查询个人总资产

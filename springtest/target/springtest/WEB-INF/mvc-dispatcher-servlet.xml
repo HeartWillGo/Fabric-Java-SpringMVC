@@ -26,19 +26,19 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 表示JPA Repository所在的包 -->
-    <jpa:repositories base-package="com.pingan.respository"/>
+    <!--<jpa:repositories base-package="com.pingan.respository"/>-->
 
-    <!-- 链接到persistence.xml -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="defaultPersistenceUnit"/>
-    </bean>
+    <!--&lt;!&ndash; 链接到persistence.xml &ndash;&gt;-->
+    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
+        <!--<property name="persistenceUnitName" value="defaultPersistenceUnit"/>-->
+    <!--</bean>-->
 
-        <!-- 事务管理 -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
+        <!--&lt;!&ndash; 事务管理 &ndash;&gt;-->
+    <!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">-->
+        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
+    <!--</bean>-->
 
-        <!-- 开启事务管理注解 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+        <!--&lt;!&ndash; 开启事务管理注解 &ndash;&gt;-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
 
 </beans>
