@@ -67,7 +67,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/TransactionMain.js"  charset="utf-8"></script>
 </head>
 <body>
-<h1>hello world色都是符合</h1>
+<%--<h1>hello world色都是符合</h1>--%>
 <div id="main" style="width: 80%;height:600px;padding-top:80px;padding-left:130px;padding-right:130px"></div>
 
 

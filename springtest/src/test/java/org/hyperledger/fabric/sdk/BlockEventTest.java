@@ -48,7 +48,7 @@ public class BlockEventTest {
     private static PeerEvents.Event badEventBlock;
 
     /**
-     * @throws java.lang.Exception
+     * @throws Exception
      */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {

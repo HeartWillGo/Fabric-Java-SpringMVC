@@ -39,7 +39,7 @@ import static org.junit.Assert.fail;
 public class ChaincodeEndorsementPolicyTest {
 
     /**
-     * Test method for {@link org.hyperledger.fabric.sdk.ChaincodeEndorsementPolicy#ChaincodeEndorsementPolicy()}.
+     * Test method for {@link ChaincodeEndorsementPolicy#ChaincodeEndorsementPolicy()}.
      */
     @Test
     public void testPolicyCtor() {
@@ -48,7 +48,7 @@ public class ChaincodeEndorsementPolicyTest {
     }
 
     /**
-     * Test method for {@link org.hyperledger.fabric.sdk.ChaincodeEndorsementPolicy#fromFile(File)} (java.io.File)}.
+     * Test method for {@link ChaincodeEndorsementPolicy#fromFile(File)} (java.io.File)}.
      *
      * @throws IOException
      */
@@ -59,7 +59,7 @@ public class ChaincodeEndorsementPolicyTest {
     }
 
     /**
-     * Test method for {@link org.hyperledger.fabric.sdk.ChaincodeEndorsementPolicy#fromFile(File)} (java.io.File)}.
+     * Test method for {@link ChaincodeEndorsementPolicy#fromFile(File)} (java.io.File)}.
      *
      * @throws IOException
      */
@@ -75,7 +75,7 @@ public class ChaincodeEndorsementPolicyTest {
     }
 
     /**
-     * Test method for {@link org.hyperledger.fabric.sdk.ChaincodeEndorsementPolicy#fromBytes(byte[])}.
+     * Test method for {@link ChaincodeEndorsementPolicy#fromBytes(byte[])}.
      */
     @Test
     public void testPolicyCtorByteArray() {

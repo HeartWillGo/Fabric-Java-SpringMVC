@@ -24,8 +24,8 @@ func (t *SimpleChaincode) createOrganization(stub shim.ChaincodeStubInterface, a
 
 
 
-	if len(args) != 4 {
-		return shim.Error("Incorrect number of arguments. Expecting 4")
+	if len(args) != 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
 	var organization Organization

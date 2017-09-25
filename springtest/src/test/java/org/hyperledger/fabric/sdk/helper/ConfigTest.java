@@ -108,27 +108,27 @@ public class ConfigTest {
 
     @Test
     public void testLogLevelTrace() {
-        testLogLevelAny("TRACE", org.apache.log4j.Level.TRACE);
+        testLogLevelAny("TRACE", Level.TRACE);
     }
 
     @Test
     public void testLogLevelDebug() {
-        testLogLevelAny("DEBUG", org.apache.log4j.Level.DEBUG);
+        testLogLevelAny("DEBUG", Level.DEBUG);
     }
 
     @Test
     public void testLogLevelInfo() {
-        testLogLevelAny("INFO", org.apache.log4j.Level.INFO);
+        testLogLevelAny("INFO", Level.INFO);
     }
 
     @Test
     public void testLogLevelWarn() {
-        testLogLevelAny("WARN", org.apache.log4j.Level.WARN);
+        testLogLevelAny("WARN", Level.WARN);
     }
 
     @Test
     public void testLogLevelError() {
-        testLogLevelAny("ERROR", org.apache.log4j.Level.ERROR);
+        testLogLevelAny("ERROR", Level.ERROR);
     }
 
     // ==========================================================================================
