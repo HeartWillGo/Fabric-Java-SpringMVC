@@ -6,134 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a67987ec-82e4-47f8-b23e-bd50ab12e3d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_7_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_0_b07.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_json_lib_json_lib_ext_spring_1_0_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_json_lib_json_lib_jdk15_2_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/接口设计.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/controller/OrgController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/controller/ProductController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/controller/TransactionController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/controller/UserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/ClientConfigHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/ClientHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/ConstructChannel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/DeployChaincode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/InvokeChainCode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/ProposalResponseBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/ReconstructChannel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/SetupUsers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/getUsers.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/PingAnMain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/TransactionMain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/echarts.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/jsfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/PingAnTest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/Transaction.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/ajax.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/PingAnTest.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ajax.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/PingAnMain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/TransactionMain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/echarts.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/jsfile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/chaincode_asset.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/chaincode_asset_test.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/generateTestdata.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/handleAsset.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/orgnization.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/product.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/transaction.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/user.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/util.go" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/CheckConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/ClientBean.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/Config.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/End2end.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/MainController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/RunChannel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SetUp.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/addBlog.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/addUser.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/blogDetail.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/blogs.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/updateBlog.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/updateUser.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userDetail.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/sample1/src/github.com/example_cc/example_cc.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/sample_11/src/github.com/example_cc/example_cc.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/sample_11/src/github.com/example_cc/vendor/sdkintegration-test/utils/utils.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/ChaincodeEventCapture.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/CheckConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/ClientBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/Config.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/End2end.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/MainController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/RunChannel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/SampleOrg.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/SampleStore$SampleStoreEnrollement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/SampleStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/SampleUser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/SetUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/controller/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/model/UserEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/myutil/ConfigHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/heartgo/myutil/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/ChaincodeEventCapture.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/CheckConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/ClientBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/Config.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/End2end.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/MainController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/RunChannel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/SampleOrg.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/SampleStore$SampleStoreEnrollement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/SampleStore.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/SampleUser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/SetUp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/controller/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/model/UserEntity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/myutil/ConfigHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/com/heartgo/myutil/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/addBlog.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/addUser.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/blogDetail.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/blogs.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/updateBlog.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/updateUser.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/userDetail.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/pages/admin/users.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/hyperledger/fabric/sdk/OrdererClient.class" afterPath="$PROJECT_DIR$/target/classes/org/hyperledger/fabric/sdk/OrdererClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/org/hyperledger/fabric/sdk/OrdererClient.class" afterPath="$PROJECT_DIR$/target/springtest/WEB-INF/classes/org/hyperledger/fabric/sdk/OrdererClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/springtest.iml" afterPath="$PROJECT_DIR$/springtest.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/fixture/sdkintegration/gocc/sample1/src/github.com/example_cc/example_cc.go" afterPath="$PROJECT_DIR$/src/main/fixture/sdkintegration/gocc/sample1/src/github.com/example_cc/example_cc.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/fixture/sdkintegration/gocc/sample_11/src/github.com/example_cc/example_cc.go" afterPath="$PROJECT_DIR$/src/main/fixture/sdkintegration/gocc/sample_11/src/github.com/example_cc/example_cc.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/hyperledger/fabric/sdk/OrdererClient.java" afterPath="$PROJECT_DIR$/src/main/java/org/hyperledger/fabric/sdk/OrdererClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/mvc-dispatcher-servlet.xml" afterPath="$PROJECT_DIR$/target/springtest/WEB-INF/mvc-dispatcher-servlet.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/springtest/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/springtest/WEB-INF/web.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/ChaincodeEventCapture.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/respository/ChaincodeEventCapture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SampleOrg.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/SampleOrg.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SampleStore.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/SampleStore.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SampleUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/SampleUser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/controller/Util.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/Util.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/model/UserEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/model/UserEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/myutil/ConfigHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/ConfigHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/heartgo/myutil/Utils.java" afterPath="$PROJECT_DIR$/src/main/java/com/pingan/myutil/Utils.java" />
-    </list>
+    <list default="true" id="a67987ec-82e4-47f8-b23e-bd50ab12e3d8" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -144,46 +17,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="getUsers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/getUsers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="897">
-              <caret line="45" column="38" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeployChaincode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/DeployChaincode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetupUsers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/SetupUsers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ReconstructChannel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/ReconstructChannel.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -194,11 +27,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orgnization.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orgnization.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/orgnization.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
+            <state relative-caret-position="621">
               <caret line="27" column="69" lean-forward="false" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transaction.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1656">
+              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1012">
+              <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionMain.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/TransactionMain.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3979">
+              <caret line="173" column="45" lean-forward="false" selection-start-line="173" selection-start-column="45" selection-end-line="173" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -234,16 +107,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/myutil/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5704">
-              <caret line="279" column="62" lean-forward="false" selection-start-line="279" selection-start-column="33" selection-end-line="279" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -252,6 +115,7 @@
         <option value="JUnit4 Test Class" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -259,6 +123,7 @@
     <findStrings>
       <find>new JSONArray</find>
       <find>new JSONObject</find>
+      <find>initChart</find>
     </findStrings>
     <replaceStrings>
       <replace>JSONArray.fromObject</replace>
@@ -266,7 +131,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -276,14 +141,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/heartgo/controller/End2end.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SetUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heartgo/controller/CheckConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heartgo/controller/SingleEnd2End.java" />
         <option value="$PROJECT_DIR$/docs/接口设计.md" />
         <option value="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/newasset/src/github.com/liquidAsset/chaincode_asset.go" />
         <option value="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/chaincode_asset.go" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/heartgo/controller/UserControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/hyperledger/fabric/sdk/OrdererClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heartgo/controller/RunChannel.java" />
@@ -319,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/Transaction.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ajax.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/pingan/respository/SetUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pingan/controller/UserController.java" />
@@ -327,11 +188,22 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pingan/respository/getUsers.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/orgnization.go" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/test.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/TransactionMain.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -350,10 +222,27 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="1320" />
-    <option name="height" value="735" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -371,9 +260,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -400,98 +287,122 @@
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pingan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
-              <item name="gocc" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pingan" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
-              <item name="gocc" type="462c0819:PsiDirectoryNode" />
-              <item name="myasset" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
-              <item name="gocc" type="462c0819:PsiDirectoryNode" />
-              <item name="myasset" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
-              <item name="gocc" type="462c0819:PsiDirectoryNode" />
-              <item name="myasset" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="springtest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="fixture" type="462c0819:PsiDirectoryNode" />
-              <item name="sdkintegration" type="462c0819:PsiDirectoryNode" />
-              <item name="gocc" type="462c0819:PsiDirectoryNode" />
-              <item name="myasset" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="liquidAsset" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
+            <path>
+              <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.webjars:jquery:2.2.4" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.webjars:jquery:2.2.4" type="70bed36:NamedLibraryElementNode" />
+              <item name="jquery-2.2.4.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.webjars:jquery:2.2.4" type="70bed36:NamedLibraryElementNode" />
+              <item name="jquery-2.2.4.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springtest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.webjars:jquery:2.2.4" type="70bed36:NamedLibraryElementNode" />
+              <item name="jquery-2.2.4.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="2.2.4" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/resources/PingAnMain.js" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.heartgo.controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp" />
+      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF\pages" />
+      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF" />
+      <recent name="E:\Users\IdeaProjects\springtest\src\test\fixture\sdkintegration\gocc\myasset" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.heartgo.controller" />
@@ -502,15 +413,6 @@
       <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF\pages" />
       <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF\pages\admin" />
       <recent name="E:\Users\IdeaProjects\springtest\src\main\resources" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp" />
-      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF\pages" />
-      <recent name="E:\Users\IdeaProjects\springtest\src\main\webapp\WEB-INF" />
-      <recent name="E:\Users\IdeaProjects\springtest\src\test\fixture\sdkintegration\gocc\myasset" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -709,14 +611,17 @@
       <workItem from="1506181928814" duration="2130000" />
       <workItem from="1506219435595" duration="12194000" />
       <workItem from="1506302567021" duration="418000" />
+      <workItem from="1506307191188" duration="4026000" />
+      <workItem from="1506311907988" duration="229000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103073000" />
+    <option name="totallyTimeSpent" value="107328000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1320" height="735" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -735,12 +640,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10033445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22222222" sideWeight="0.6635688" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22222222" sideWeight="0.33643124" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33888048" sideWeight="0.84184515" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33888048" sideWeight="0.15815486" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -795,27 +700,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/Liquidate-assets-test/test/chaincode_asset_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/myutil/SampleOrg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/myutil/SampleStore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -864,39 +748,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/addUser.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userDetail.jsp" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/main.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/jsfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/jsfile.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/PingAnMain.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/PingAnMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/TransactionMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -921,24 +783,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/echarts.min.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/echarts.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-230">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1334">
-          <caret line="73" column="6" lean-forward="false" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1001,41 +849,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/SetupUsers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="462">
           <caret line="28" column="48" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/myutil/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5704">
+        <state relative-caret-position="5456">
           <caret line="279" column="62" lean-forward="false" selection-start-line="279" selection-start-column="33" selection-end-line="279" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/DeployChaincode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="374">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/respository/getUsers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
+        <state relative-caret-position="0">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="45" column="38" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1071,10 +907,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="217" column="15" lean-forward="false" selection-start-line="217" selection-start-column="15" selection-end-line="217" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-660">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/webjars/jquery/2.2.4/jquery-2.2.4.jar!/META-INF/resources/webjars/jquery/2.2.4/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5478">
+          <caret line="0" column="65" lean-forward="true" selection-start-line="0" selection-start-column="65" selection-end-line="0" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/test.js" />
     <entry file="file://$PROJECT_DIR$/src/test/fixture/sdkintegration/gocc/myasset/src/github.com/liquidAsset/orgnization.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
+        <state relative-caret-position="621">
           <caret line="27" column="69" lean-forward="false" selection-start-line="27" selection-start-column="69" selection-end-line="27" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/TransactionMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3979">
+          <caret line="173" column="45" lean-forward="false" selection-start-line="173" selection-start-column="45" selection-end-line="173" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pingan/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/Transaction.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>

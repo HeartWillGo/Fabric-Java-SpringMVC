@@ -1,10 +1,11 @@
+﻿charset="utf-8";
 window.onload = function () {
 
     //fire_ajax_submit();
     initChart();
    setInterval("getData()",1000);
 
-
+console.log('儿网热若无');
   //  getData(); //动态获取数据
 
 };
@@ -139,7 +140,7 @@ function getData() {  //获取数据
         timeout: 600000,
         success: function (data) {
             console.log("logggg",data);
-            for (var i = 0; i < data.transactionsResult.length; i++) {　//数组的遍历
+            for (var i = 0; i < data.transactionsResult.length; i++) {//数组的遍历
                 transactionid[i] = data.transactionsResult[i].transactionid;
                 myDate[i] = data.transactionsResult[i].transactiondate;
                 parentorder[i] = data.transactionsResult[i].parentorder;

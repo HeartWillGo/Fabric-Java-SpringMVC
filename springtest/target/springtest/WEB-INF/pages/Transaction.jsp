@@ -13,16 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>ECharts</title>
-    <h1>hello world</h1>
+
     <!-- 引入 echarts.js -->
     <!-- 这里是加载刚下好的echarts.min.js，注意路径 -->
 
 
-    <script type="text/javascript"
-            src="webjars/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/echarts.min.js"></script>
-    <script type="text/javascript" src="js/jsfile.js"></script>
 
 
 
@@ -64,15 +59,15 @@
     <!--}-->
     <!--</script>-->
 
-    <script type="text/javascript" src="js/TransactionMain.js"></script>
-    <script type="text/javascript"
-            src="webjars/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript" src="js/echarts.min.js"></script>
-    <script type="text/javascript" src="js/jsfile.js"></script>
 
+    <script type="text/javascript" src="webjars/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/main.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/echarts.min.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jsfile.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/TransactionMain.js"  charset="utf-8"></script>
 </head>
 <body>
-
+<h1>hello world色都是符合</h1>
 <div id="main" style="width: 80%;height:600px;padding-top:80px;padding-left:130px;padding-right:130px"></div>
 
 
