@@ -2,39 +2,45 @@ package main
 
 import (
 	"bytes"
-	"io/ioutil"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"strconv"
 	"time"
-	"encoding/json"
 
 	"os"
 )
 
-func generate_transdata(number int ) {
+func generate_transdata(number int) {
 	var buffer bytes.Buffer
 	buffer.WriteString("[")
 	AlreadyWrite := false
 
-	for i:=0; i < number; i++ {
+	for i := 0; i < number; i++ {
 		if AlreadyWrite == true {
 			buffer.WriteString(",")
 		}
 		var transaction Transaction
 		var idx string
 		idx = strconv.Itoa(i)
-		transaction.Transactionid = "transactionid"+idx
+		transaction.SID  =  RandStr(8)
+		transaction.ReceiverSID = "20170929"+ idx
+		transaction.OriginSID  = "20171023"+idx
+		transaction.RequestSerial = "20171034"+ idx
+		transaction.NextRequestSerial = "20171034"+ idx
+		transaction.Proposaltime =  time.Now().Unix()
+		transaction.Transactionid = "transactionid" + idx
 		transaction.Transactiondate = time.Now().Unix()
-		transaction.Parentorder =  idx
-		transaction.Suborder =  idx
-		transaction.Payid =  idx
-		transaction.Transtype =  idx
+		transaction.Parentorder = idx
+		transaction.Suborder = idx
+		transaction.Payid = idx
+		transaction.Transtype = idx
 		transaction.Fromtype = 1
-		transaction.Fromid =  "userid" + strconv.Itoa(i / 3)
+		transaction.Fromid = "userid" + strconv.Itoa(i/3)
 		transaction.Totype = 1
 		transaction.Toid = RandStr(8)
-		transaction.Productid = "productid"+ idx
-		transaction.Productinfo = "wegood"+"i%3"
+		transaction.Productid = "productid" + idx
+		transaction.Productinfo = "wegood" + "i%3"
 		transaction.Organizationid = "pingan"
 		transaction.Amount = 4
 		transaction.Price = 9
@@ -53,14 +59,12 @@ func generate_userData(number int) {
 	var buffer bytes.Buffer
 	buffer.WriteString("[")
 	AlreadyWrite := false
-	for i:=0; i < number; i++ {
+	for i := 0; i < number; i++ {
 		if AlreadyWrite == true {
 			buffer.WriteString(",")
 		}
 		var user User
 		var idx string
-
-
 
 		idx = strconv.Itoa(i)
 		user.ID = "userid" + strconv.Itoa(i)
@@ -68,7 +72,7 @@ func generate_userData(number int) {
 		user.Identificationtype = 1
 		user.Identification = "23342"
 		user.Sex = 1
-		user.Birthday ="20340912"
+		user.Birthday = "20340912"
 		user.Bankcard = "123243"
 		user.Phonenumber = "999999"
 		user.Token = idx
@@ -88,7 +92,7 @@ func generate_productData(number int) {
 	var buffer bytes.Buffer
 	buffer.WriteString("[")
 	AlreadyWrite := false
-	for i:=0; i < number; i++ {
+	for i := 0; i < number; i++ {
 		if AlreadyWrite == true {
 			buffer.WriteString(",")
 		}
@@ -96,13 +100,12 @@ func generate_productData(number int) {
 		var idx string
 		idx = strconv.Itoa(i)
 
-		product.Productid = "productid"+idx
+		product.Productid = "productid" + idx
 		product.Productname = "zhaocaibao"
 		product.Organizationid = "pingan"
 		product.Producttype = 1
 		product.Amount = 3
 		product.Price = 33.0
-
 
 		productBytes, _ := json.Marshal(product)
 		buffer.WriteString(string(productBytes))
@@ -119,7 +122,7 @@ func generate_organizationData(number int) {
 	var buffer bytes.Buffer
 	buffer.WriteString("[")
 	AlreadyWrite := false
-	for i:=0; i < number; i++ {
+	for i := 0; i < number; i++ {
 		if AlreadyWrite == true {
 			buffer.WriteString(",")
 		}
@@ -129,7 +132,6 @@ func generate_organizationData(number int) {
 		organization.OrganizationID = "pingan" + idx
 		organization.OrganizationName = "pingan"
 		organization.OrganizationType = 1
-
 
 		transactionBytes, _ := json.Marshal(organization)
 		buffer.WriteString(string(transactionBytes))

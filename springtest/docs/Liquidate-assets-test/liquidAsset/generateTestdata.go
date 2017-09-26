@@ -23,6 +23,12 @@ func generate_transdata(number int) {
 		var transaction Transaction
 		var idx string
 		idx = strconv.Itoa(i)
+		transaction.SID  =  RandStr(8)
+		transaction.ReceiverSID = "20170929"+ idx
+		transaction.OriginSID  = "20171023"+idx
+		transaction.RequestSerial = "20171034"+ idx
+		transaction.NextRequestSerial = "20171034"+ idx
+		transaction.Proposaltime =  time.Now().Unix()
 		transaction.Transactionid = "transactionid" + idx
 		transaction.Transactiondate = time.Now().Unix()
 		transaction.Parentorder = idx

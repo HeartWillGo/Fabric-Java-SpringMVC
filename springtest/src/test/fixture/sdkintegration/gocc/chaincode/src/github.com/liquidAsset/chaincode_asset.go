@@ -16,13 +16,11 @@ import (
 type SimpleChaincode struct {
 }
 
-
 type ProductProcess struct {
-	ProcessType   int `json:"processtype"`   //操作类型
+	ProcessType   int     `json:"processtype"`   //操作类型
 	ProcessAmount float64 `json:"processamount"` //操作份额
 	ProcessPrice  float64 `json:"ProcessPrice"`  //价格
 }
-
 
 //资金
 type Fund struct {
@@ -63,7 +61,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	case args[0] == "getUserOrgProductid":
 		fmt.Println("entering getUserOrgProductid")
 		return t.getUserOrgProductid(stub, args)
-	case args[0]  == "getUserAllProduct":
+	case args[0] == "getUserAllProduct":
 		fmt.Println("entering getUserAllProduct")
 		return t.getUserAllProduct(stub, args)
 	case args[0] == "getUserFromOrganizationAsset":
@@ -71,8 +69,6 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.getUserFromOrganizationAsset(stub, args)
 	case args[0] == "WriteUser":
 		return t.WriteUser(stub, args)
-
-
 
 	case args[0] == "CreateProduct":
 		return t.CreateProduct(stub, args)
@@ -82,12 +78,12 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.WriteProduct(stub, args)
 	case args[0] == "getProductAsset":
 		return t.getProductAsset(stub, args)
-	case args[0] == "getProductAllUser"	:
+	case args[0] == "getProductAllUser":
 		return t.getProductAllUser(stub, args)
 	case args[0] == "getProductTransactionByProductID":
 		return t.getProductTransactionByProductID(stub, args)
-
-
+	case args[0] == "getProductOneUser":
+		return t.getProductOneUser(stub, args)
 
 	case args[0] == "createOrganization":
 		return t.createOrganization(stub, args)
@@ -113,8 +109,6 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	case args[0] == "getTransactionByTransactionidRange":
 		return t.getTransactionByTransactionidRange(stub, args)
 
-
-
 	case args[0] == "query":
 		return t.query(stub, args)
 	default:
@@ -123,6 +117,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 
 	return shim.Error("Unknown action,")
 }
+
 // query callback representing the query of a chaincode
 func (t *SimpleChaincode) query(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var err error

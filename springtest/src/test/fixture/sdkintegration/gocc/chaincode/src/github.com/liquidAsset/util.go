@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"time"
-	"math/rand"
 	"encoding/json"
+	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
 
 func RandStr(strlen int) string {
@@ -15,7 +15,7 @@ func RandStr(strlen int) string {
 	for i := 0; i < strlen; i++ {
 		num = rand.Intn(57) + 65
 		for {
-			if num>90 && num<97 {
+			if num > 90 && num < 97 {
 				num = rand.Intn(57) + 65
 			} else {
 				break
@@ -52,4 +52,3 @@ func toJson(transaction interface{}) string {
 func (transaction Transaction) toString() string {
 	return toJson(transaction)
 }
-

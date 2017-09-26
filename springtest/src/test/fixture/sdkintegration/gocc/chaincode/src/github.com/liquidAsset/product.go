@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"bytes"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
-	"bytes"
 )
 
 //产品
@@ -22,8 +22,6 @@ type Product struct {
 //createProduct 创建产品
 func (t *SimpleChaincode) CreateProduct(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex11 CreateProduct")
-
-
 
 	if len(args) != 2 {
 		return shim.Error("Incorrect number of arguments. Expecting 2")
@@ -51,9 +49,9 @@ func (t *SimpleChaincode) CreateProduct(stub shim.ChaincodeStubInterface, args [
 		return shim.Error(err.Error())
 	}
 
-
 	return shim.Success(nil)
 }
+
 //getProduct 获取产品信息
 func (t *SimpleChaincode) getProduct(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 getProduct")
@@ -76,18 +74,18 @@ func (t *SimpleChaincode) getProduct(stub shim.ChaincodeStubInterface, args []st
 	}
 	return shim.Success(ProductInfo)
 }
+
 //TODO WriteProduct 修改产品
 func (t *SimpleChaincode) WriteProduct(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 
 	return shim.Success(nil)
 }
 
-
 //根据productid得到该产品的所有交易信息
-func (t *SimpleChaincode) getProductTransactionByProductID(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *SimpleChaincode) getProductTransactionByProductID(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x07 getProductTransactionByProductID")
 
-	if len(args) != 2{
+	if len(args) != 2 {
 		return shim.Error("Expecting 2, you are wrong")
 	}
 	productid := args[1:]
@@ -117,11 +115,11 @@ func (t *SimpleChaincode) getProductTransactionByProductID(stub shim.ChaincodeSt
 			return shim.Error("we cannot splitcompositekey")
 		}
 		if objectType != "Productid~Transactionid" {
-			return shim.Error("object is not we want %s"+ productid[0])
+			return shim.Error("object is not we want %s" + productid[0])
 		}
 		transactionid := compositeKeyParts[len(compositeKeyParts)-1]
 
-		transactionBytes,err := stub.GetState(transactionid)
+		transactionBytes, err := stub.GetState(transactionid)
 		if err != nil {
 			return shim.Error("the transactionid is not put in the ledger")
 		}
@@ -141,8 +139,9 @@ func (t *SimpleChaincode) getProductTransactionByProductID(stub shim.ChaincodeSt
 	return shim.Success(buffer.Bytes())
 
 }
+
 //得到某一产品的售卖汇总
-func (t *SimpleChaincode) getProductAsset(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *SimpleChaincode) getProductAsset(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x08 Enter in getProductAsset")
 	resp := t.getProductTransactionByProductID(stub, args)
 	if resp.Status != shim.OK {
@@ -157,16 +156,38 @@ func (t *SimpleChaincode) getProductAsset(stub shim.ChaincodeStubInterface, args
 	return shim.Success(assetBytes)
 
 }
+
 //得到某一产品的购买用户
-func (t *SimpleChaincode) getProductAllUser(stub shim.ChaincodeStubInterface, args []string) pb.Response{
+func (t *SimpleChaincode) getProductAllUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("0x08 Enter in getProductAllUser")
 	resp := t.getProductTransactionByProductID(stub, args)
 	if resp.Status != shim.OK {
 		return shim.Error("getProductTransactionByProductID Failed")
 	}
-	AllUser := computeProductAllUser(resp.GetPayload())
+	productAsset := computeProductAllUser(resp.GetPayload())
+	productAssetBytes, err := json.Marshal(productAsset)
+	if err != nil {
+		fmt.Println("marshal userOperateProductMapBytes Wrong")
+	}
 
+	return shim.Success(productAssetBytes)
 
-	return shim.Success(AllUser)
+}
+
+//得到某一产品的某一用户的购买情况
+func (t *SimpleChaincode) getProductOneUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	fmt.Println("0x08 Enter in getProductOneUser")
+	resp := t.getProductTransactionByProductID(stub, args[1:])
+	if resp.Status != shim.OK {
+		return shim.Error("getProductTransactionByProductID Failed")
+	}
+	productAsset := computeProductAllUser(resp.GetPayload())
+	UserAssetBytes, err := json.Marshal(productAsset.UserMap[args[1]])
+
+	if err != nil {
+		fmt.Println("marshal userOperateProductMapBytes Wrong")
+	}
+
+	return shim.Success(UserAssetBytes)
 
 }

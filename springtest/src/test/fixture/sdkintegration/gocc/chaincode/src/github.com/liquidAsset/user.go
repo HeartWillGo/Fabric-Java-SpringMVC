@@ -1,11 +1,12 @@
 package main
+
 import (
 	"encoding/json"
 	"fmt"
 
+	"bytes"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
-	"bytes"
 )
 
 //用户
@@ -14,7 +15,7 @@ type User struct {
 	Name               string `json:"Name"`
 	Identificationtype int    `json:"identificationtype"`
 	Identification     string `json:"identification"`
-	Sex                int `json:"sex"`
+	Sex                int    `json:"sex"`
 	Birthday           string `json:"birthday"`
 	Bankcard           string `json:"bankcard"`
 	Phonenumber        string `json:"phonenumber"`
@@ -26,10 +27,10 @@ type UserLogin struct {
 	Username string `json:"username"`
 	Token    string `json:"token"`
 }
+
 //用户登录
 func (t *SimpleChaincode) UserLogin(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("ex02 UserLogin")
-
 
 	if len(args) != 2 {
 		return shim.Error("UserLogin :Incorrect number of arguments. Expecting 2")
@@ -70,12 +71,12 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 		return shim.Error("CreateUser：Incorrect number of arguments. Expecting 2")
 	}
 
-	err := json.Unmarshal([]byte(args[1]),&user)
+	err := json.Unmarshal([]byte(args[1]), &user)
 	if err != nil {
 		return shim.Error(err.Error())
 	}
 
-	userInfo, err  := json.Marshal(user)
+	userInfo, err := json.Marshal(user)
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -83,7 +84,7 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 	userByte, err := stub.GetState(user.ID)
 	if err != nil {
 		return shim.Error("failed to return userbytes")
-	} else  if userByte != nil {
+	} else if userByte != nil {
 		return shim.Error(user.ID + "already have")
 	}
 	err = stub.PutState(user.ID, userInfo)
@@ -91,10 +92,8 @@ func (t *SimpleChaincode) CreateUser(stub shim.ChaincodeStubInterface, args []st
 		return shim.Error(err.Error())
 	}
 
-
 	return shim.Success(nil)
 }
-
 
 //getUser 获取用户信息
 func (t *SimpleChaincode) getUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
@@ -129,12 +128,12 @@ func (t *SimpleChaincode) WriteUser(stub shim.ChaincodeStubInterface, args []str
 		return shim.Error("CreateUser：Incorrect number of arguments. Expecting 2")
 	}
 
-	err := json.Unmarshal([]byte(args[1]),&user)
+	err := json.Unmarshal([]byte(args[1]), &user)
 	if err != nil {
 		return shim.Error(err.Error())
 	}
 
-	userInfo, err  := json.Marshal(user)
+	userInfo, err := json.Marshal(user)
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -142,7 +141,7 @@ func (t *SimpleChaincode) WriteUser(stub shim.ChaincodeStubInterface, args []str
 	userByte, err := stub.GetState(user.ID)
 	if err != nil {
 		return shim.Error("failed to return userbytes")
-	} else  if userByte == nil {
+	} else if userByte == nil {
 		return shim.Error(user.ID + "don't have")
 	}
 	err = stub.PutState(user.ID, userInfo)
@@ -187,7 +186,7 @@ func (t *SimpleChaincode) getUserOrgProductid(stub shim.ChaincodeStubInterface, 
 	var AlreadyProduct = false
 	buffer.WriteString("[")
 	Organization := asset.OrganizatonMap[args[1]]
-	for _, product := range Organization.ProductMap{
+	for _, product := range Organization.ProductMap {
 		productInfo, err := stub.GetState(product.ID)
 		if err != nil {
 			return shim.Error(err.Error())
@@ -203,6 +202,7 @@ func (t *SimpleChaincode) getUserOrgProductid(stub shim.ChaincodeStubInterface, 
 	fmt.Println(buffer.String())
 	return shim.Success(buffer.Bytes())
 }
+
 //用户查询当下的所有产品
 //args []string{"getUserAllProduct", "userid"}
 //return product
@@ -219,7 +219,7 @@ func (t *SimpleChaincode) getUserAllProduct(stub shim.ChaincodeStubInterface, ar
 	var AlreadyOrg = false
 	buffer.WriteString("[")
 
-	for _, Org := range asset.OrganizatonMap{
+	for _, Org := range asset.OrganizatonMap {
 		if AlreadyOrg == true {
 			buffer.WriteString(",")
 		}
@@ -229,8 +229,8 @@ func (t *SimpleChaincode) getUserAllProduct(stub shim.ChaincodeStubInterface, ar
 		buffer.WriteString(Org.ID)
 		buffer.WriteString("\"")
 		buffer.WriteString(":")
-		var AlreadyProduct  = false
-		for _,Product := range Org.ProductMap {
+		var AlreadyProduct = false
+		for _, Product := range Org.ProductMap {
 			if AlreadyProduct {
 				buffer.WriteString(",")
 			}
@@ -250,7 +250,6 @@ func (t *SimpleChaincode) getUserAllProduct(stub shim.ChaincodeStubInterface, ar
 	return shim.Success(buffer.Bytes())
 
 }
-
 
 //TODO:
 //getAsset里面包含了user在机构的所有信息,这个地方是否有必要？

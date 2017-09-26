@@ -189,14 +189,23 @@ public class UserController {
     @RequestMapping(value="transaction",method= RequestMethod.POST)
     public @ResponseBody String  transation(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
 
-        String[] args=new String[]{"Transaction",body};
 
 
-        try {
-            InvokeChainCode invoke = new InvokeChainCode(args);
-            invoke.invoke();
-        }catch (Exception e){
-            e.printStackTrace();
+        JSONArray arr=JSONArray.fromObject(body);
+
+
+        for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
+            JSONObject json_trans = (JSONObject) iterator.next();
+
+            String[] args = new String[]{"Transaction", json_trans.toString()};
+
+
+            try {
+                InvokeChainCode invoke = new InvokeChainCode(args);
+                invoke.invoke();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -206,21 +215,21 @@ public class UserController {
     @RequestMapping(value="CreateUser",method= RequestMethod.POST)
     public @ResponseBody String  CreateUser(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException{
         System.out.println("body:"+body);
-        JSONObject requestcontent=JSONObject.fromObject(body);
-        System.out.println("requestcontent:"+requestcontent);
-        String id=requestcontent.getString ("id");
-        String name=requestcontent.getString("name");
-        String identificationType=requestcontent.getString("identificationType");
-        String identification=requestcontent.getString("identification");
-        String sex=requestcontent.getString("sex");
-        String birthday=requestcontent.getString("birthday");
-        String bankcard=requestcontent.getString("bankcard");
-        String phonoumber=requestcontent.getString("phonoumber");
-        String token=requestcontent.getString("token");
-        System.out.println("token:"+token);
-        System.out.println("name:"+name);
-        System.out.println("id:"+id);
-        String[] args=new String[]{"CreateUser",id,name,identificationType,identification,sex,birthday,bankcard,phonoumber,token};
+//        JSONObject requestcontent=JSONObject.fromObject(body);
+//        System.out.println("requestcontent:"+requestcontent);
+//        String id=requestcontent.getString ("id");
+//        String name=requestcontent.getString("name");
+//        String identificationType=requestcontent.getString("identificationType");
+//        String identification=requestcontent.getString("identification");
+//        String sex=requestcontent.getString("sex");
+//        String birthday=requestcontent.getString("birthday");
+//        String bankcard=requestcontent.getString("bankcard");
+//        String phonoumber=requestcontent.getString("phonoumber");
+//        String token=requestcontent.getString("token");
+//        System.out.println("token:"+token);
+//        System.out.println("name:"+name);
+//        System.out.println("id:"+id);
+        String[] args=new String[]{"CreateUser",body};
 
 
 

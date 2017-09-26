@@ -60,7 +60,7 @@ public class DeployChaincode {
 		//// For GO language and serving just a single user, chaincodeSource is
 		//// mostly likely the users GOPATH
 		installProposalRequest
-				.setChaincodeSourceLocation(new File(TEST_FIXTURES_PATH + "/sdkintegration/gocc/myasset"));
+				.setChaincodeSourceLocation(new File(TEST_FIXTURES_PATH + "/sdkintegration/gocc/chaincode"));
 		installProposalRequest.setChaincodeVersion(CHAIN_CODE_VERSION);
 
 		System.out.println("Sending install proposal");

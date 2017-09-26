@@ -39,6 +39,9 @@ type Transaction struct {
 	Price          float64 `json:"price"`
 }
 
+
+
+
 //交易信息入链,创建索引信息
 //args[0] functionname string
 //args[1] userid string
@@ -206,7 +209,7 @@ func (t *SimpleChaincode) getTransactionByUserID(stub shim.ChaincodeStubInterfac
 	Fromid := args[1:]
 
 	// Query the TransactionObject index by FromID
-	// This will execute a key range query on all keys starting with 'color'
+	// This will execute a key range query on all keys starting with 'Fromid'
 	transactionFromidResultsIterator, err := stub.GetStateByPartialCompositeKey("Fromid~Transactionid", Fromid)
 	if err != nil {
 		return shim.Error(err.Error())
