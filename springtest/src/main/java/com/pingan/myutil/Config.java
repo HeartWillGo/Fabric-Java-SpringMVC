@@ -65,7 +65,7 @@ public class Config {
     private final boolean runningFabricCATLS;
     private final boolean runningFabricTLS;
 
-    //配置
+    //配置。
     public  static final String TEST_ADMIN_NAME = "admin";
     public static final String TESTUSER_1_NAME = "user1";
     public static final String TEST_FIXTURES_PATH = "/E:/Users/IdeaProjects/springtest/src/test/fixture";

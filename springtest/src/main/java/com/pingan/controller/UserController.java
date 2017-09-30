@@ -299,7 +299,7 @@ public class UserController {
         String result=null;
         try {
             InvokeChainCode invoke = new InvokeChainCode(args);
-            result=invoke.invoke();
+            result=invoke.query();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -310,7 +310,7 @@ public class UserController {
 
     //查询个人总资产
     @RequestMapping(value="getUserAsset ",method= RequestMethod.POST)
-    public @ResponseBody Map<String,String>  getUserAsset(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public @ResponseBody String  getUserAsset(@RequestBody String body,HttpServletRequest request, HttpServletResponse response) throws IOException{
         System.out.println("body:"+body);
         JSONObject requestcontent=JSONObject.fromObject(body);
         String id=requestcontent.getString("id");
@@ -330,22 +330,22 @@ public class UserController {
             e.printStackTrace();
         }
         System.out.println("result :"+result);
-        JSONArray arr=JSONArray.fromObject(result);
-        Map<String,String> map=new HashMap<String,String>();
+//        JSONArray arr=JSONArray.fromObject(result);
+//        Map<String,String> map=new HashMap<String,String>();
+//
+//        for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
+//            JSONObject json_foo = (JSONObject) iterator.next();
+//
+//
+//            String userid=json_foo.getString("id");
+//            String asset=json_foo.getString("asset");
+//
+//            map.put(userid,asset);
+//        }
+//
 
-        for (Iterator<Object> iterator = arr.iterator(); iterator.hasNext();) {
-            JSONObject json_foo = (JSONObject) iterator.next();
 
-
-            String userid=json_foo.getString("id");
-            String asset=json_foo.getString("asset");
-
-            map.put(userid,asset);
-        }
-
-
-
-        return map;
+        return result;
     }
     @RequestMapping(value = "getUser", method = RequestMethod.POST)
     public @ResponseBody String getUser(@RequestBody String body, HttpServletRequest request, HttpServletResponse response) throws IOException {

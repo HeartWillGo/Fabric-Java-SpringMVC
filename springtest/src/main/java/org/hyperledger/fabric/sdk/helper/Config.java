@@ -94,15 +94,15 @@ public class Config {
             // TODO remove this once we have implemented MSP and get the peer certs from the channel
             defaultProperty(CACERTS, "/genesisblock/peercacert.pem");
 
-            defaultProperty(PROPOSAL_WAIT_TIME, "20000");
-            defaultProperty(GENESISBLOCK_WAIT_TIME, "5000");
+            defaultProperty(PROPOSAL_WAIT_TIME, "60000");
+            defaultProperty(GENESISBLOCK_WAIT_TIME, "60000");
             defaultProperty(MAX_LOG_STRING_LENGTH, "64");
             defaultProperty(EXTRALOGLEVEL, "0");
             defaultProperty(LOGGERLEVEL, null);
             defaultProperty(DIAGNOTISTIC_FILE_DIRECTORY, null);
             defaultProperty(CHANNEL_CONFIG_WAIT_TIME, "15000");
             defaultProperty(ORDERER_RETRY_WAIT_TIME, "200");
-            defaultProperty(EVENTHUB_CONNECTION_WAIT_TIME, "1000");
+            defaultProperty(EVENTHUB_CONNECTION_WAIT_TIME, "60000");
 
             final String inLogLevel = sdkProperties.getProperty(LOGGERLEVEL);
 
