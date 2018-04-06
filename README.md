@@ -38,3 +38,5 @@ Config主要定义智能合约代码路径，区块链节点配置信息。
 https://github.com/HeartWillGo/Fabric-Java-SpringMVC/tree/master/springtest/docs
 
 可以看看我写的相关文档，看了之后你应该会慢慢懂得。
+
+有不懂的问题可以emil我。
