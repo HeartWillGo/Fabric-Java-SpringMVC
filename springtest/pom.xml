@@ -121,12 +121,7 @@
    <artifactId>netty-codec-http2</artifactId>
    <version>4.1.13.Final</version>
   </dependency>
-  <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-  <dependency>
-   <groupId>com.google.protobuf</groupId>
-   <artifactId>protobuf-java</artifactId>
-   <version>3.4.0</version>
-  </dependency>
+
   <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
   <dependency>
    <groupId>org.bouncycastle</groupId>
@@ -176,9 +171,89 @@
 
   <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
   <dependency>
+   <groupId>junit</groupId>
+   <artifactId>junit</artifactId>
+   <version>4.12</version>
+   <scope>test</scope>
+  </dependency>
+  <dependency>
+   <groupId>io.grpc</groupId>
+   <artifactId>grpc-netty</artifactId>
+   <version>${grpc.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>io.grpc</groupId>
+   <artifactId>grpc-protobuf</artifactId>
+   <version>${grpc.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>io.grpc</groupId>
+   <artifactId>grpc-stub</artifactId>
+   <version>${grpc.version}</version>
+  </dependency>
+  <dependency>
+   <groupId>io.netty</groupId>
+   <artifactId>netty-tcnative-boringssl-static</artifactId>
+   <version>2.0.8.Final</version>
+  </dependency>
+  <dependency>
+   <groupId>io.netty</groupId>
+   <artifactId>netty-codec-http2</artifactId>
+   <version>4.1.23.Final</version>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+  <dependency>
+   <groupId>com.google.protobuf</groupId>
+   <artifactId>protobuf-java</artifactId>
+   <version>3.5.1</version>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
+  <dependency>
+   <groupId>org.bouncycastle</groupId>
+   <artifactId>bcpkix-jdk15on</artifactId>
+   <version>${bouncycastle.version}</version>
+  </dependency>
+
+  <dependency>
+   <groupId>commons-logging</groupId>
+   <artifactId>commons-logging</artifactId>
+   <version>1.2</version>
+  </dependency>
+  <dependency>
+   <groupId>commons-cli</groupId>
+   <artifactId>commons-cli</artifactId>
+   <version>1.4</version>
+  </dependency>
+  <dependency>
+   <groupId>org.apache.commons</groupId>
+   <artifactId>commons-compress</artifactId>
+   <version>1.16.1</version>
+  </dependency>
+  <dependency>
+   <groupId>commons-io</groupId>
+   <artifactId>commons-io</artifactId>
+   <version>2.6</version>
+  </dependency>
+
+  <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+  <dependency>
+   <groupId>log4j</groupId>
+   <artifactId>log4j</artifactId>
+   <version>1.2.17</version>
+  </dependency>
+
+  <!--<dependency>-->
+  <!--<groupId>org.apache.logging.log4j</groupId>-->
+  <!--<artifactId>log4j-core</artifactId>-->
+  <!--<version>2.8.2</version>-->
+  <!--</dependency>-->
+
+
+  <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+  <dependency>
    <groupId>org.apache.httpcomponents</groupId>
    <artifactId>httpclient</artifactId>
-   <version>4.5.2</version>
+   <version>${httpclient.version}</version>
   </dependency>
 
 
@@ -186,7 +261,7 @@
   <dependency>
    <groupId>org.apache.httpcomponents</groupId>
    <artifactId>httpmime</artifactId>
-   <version>4.5.2</version>
+   <version>${httpclient.version}</version>
    <scope>test</scope>
   </dependency>
 
@@ -195,7 +270,7 @@
   <dependency>
    <groupId>org.glassfish</groupId>
    <artifactId>javax.json</artifactId>
-   <version>1.1</version>
+   <version>1.1.2</version>
   </dependency>
 
   <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.mortbay.jetty.alpn/jetty-alpn-agent &ndash;&gt;-->
@@ -211,32 +286,72 @@
   <!--<artifactId>alpn-boot</artifactId>-->
   <!--<version>${alpn-boot-version}</version>-->
   <!--</dependency>-->
-  <dependency>
-   <groupId>org.webjars</groupId>
-   <artifactId>jquery</artifactId>
-   <version>2.2.4</version>
-  </dependency>
-
-
 
 
   <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
   <dependency>
    <groupId>org.yaml</groupId>
    <artifactId>snakeyaml</artifactId>
-   <version>1.18</version>
+   <version>1.20</version>
   </dependency>
  </dependencies>
  <build>
-  <finalName>springtest</finalName>
+  <resources>
+   <resource>
+    <filtering>false</filtering>
+    <directory>src</directory>
+    <includes>
+     <include>**/*.properties</include>
+    </includes>
+    <excludes>
+     <exclude>test/**</exclude>
+    </excludes>
+   </resource>
+  </resources>
+  <extensions>
+   <extension>
+    <groupId>kr.motd.maven</groupId>
+    <artifactId>os-maven-plugin</artifactId>
+    <version>1.4.1.Final</version>
+   </extension>
+  </extensions>
   <plugins>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.19.1</version>
     <configuration>
-     <source>1.8</source>
-     <target>1.8</target>
+     <argLine>${surefireArgLine}</argLine>
+     <includes>
+      <include>**/*Test.java</include>
+     </includes>
+     <!--<useSystemClassLoader>true</useSystemClassLoader>-->
     </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>2.19.1</version>
+    <configuration>
+     <argLine>${failsafeArgLine}</argLine>
+     <includes>
+      <include>**/${org.hyperledger.fabric.sdktest.ITSuite}</include>
+     </includes>
+     <skipITs>${skipITs}</skipITs>
+     <!--<argLine>-->
+     <!-- -Xbootclasspath/p:${settings.localRepository}/org/mortbay/jetty/alpn/alpn-boot/${alpn-boot-version}/alpn-boot-${alpn-boot-version}.jar-->
+     <!--</argLine>-->
+    </configuration>
+    <executions>
+     <execution>
+      <id>failsafe-integration-tests</id>
+      <phase>integration-test</phase>
+      <goals>
+       <goal>integration-test</goal>
+       <goal>verify</goal>
+      </goals>
+     </execution>
+    </executions>
    </plugin>
    <plugin>
     <groupId>org.xolstice.maven.plugins</groupId>
@@ -287,31 +402,242 @@
    </plugin>
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-javadoc-plugin</artifactId>
-    <version>2.10.4</version>
+    <artifactId>maven-checkstyle-plugin</artifactId>
+    <version>2.17</version>
+    <executions>
+     <execution>
+      <goals>
+       <goal>check</goal>
+      </goals>
+     </execution>
+    </executions>
     <configuration>
-     <excludePackageNames>
-      org.hyperledger.fabric_ca.sdk.helper:org.hyperledger.fabric.protos.*:org.hyperledger.fabric.sdk.helper:org.hyperledger.fabric.sdk.transaction:org.hyperledger.fabric.sdk.security
-     </excludePackageNames>
-     <show>public</show>
-     <doctitle>Hyperledger Fabric Java SDK</doctitle>
-     <nohelp>true</nohelp>
+     <consoleOutput>true</consoleOutput>
+     <logViolationsToConsole>true</logViolationsToConsole>
+     <failOnViolation>true</failOnViolation>
+     <failsOnError>true</failsOnError>
+     <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+     <configLocation>checkstyle-config.xml</configLocation>
+     <includeTestSourceDirectory>true</includeTestSourceDirectory>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>${jacoco.version}</version>
+    <configuration>
+     <excludes>
+      <exclude>**/org/hyperledger/fabric/protos/**</exclude>
+     </excludes>
     </configuration>
     <executions>
      <execution>
-      <id>attach-javadocs</id>
+      <id>default-prepare-agent</id>
       <goals>
-       <goal>jar</goal>
+       <goal>prepare-agent</goal>
+      </goals>
+     </execution>
+     <execution>
+      <id>default-report</id>
+      <phase>prepare-package</phase>
+      <goals>
+       <goal>report</goal>
+      </goals>
+     </execution>
+     <!--
+         Prepares the property pointing to the JaCoCo runtime agent which
+         is passed as VM argument when Maven the Surefire plugin is executed.
+     -->
+     <execution>
+      <id>pre-unit-test</id>
+      <goals>
+       <goal>prepare-agent</goal>
+      </goals>
+      <configuration>
+       <propertyName>surefireArgLine</propertyName>
+       <!-- Sets the path to the file which contains the execution data. -->
+       <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+       <!--
+           Sets the name of the property containing the settings
+           for JaCoCo runtime  agent.
+       -->
+
+      </configuration>
+     </execution>
+     <!--
+         Ensures that the code coverage report for unit tests is created after
+         unit tests have been run.
+     -->
+     <execution>
+      <id>post-unit-test</id>
+      <phase>test</phase>
+      <goals>
+       <goal>report</goal>
+      </goals>
+      <configuration>
+       <!-- Sets the path to the file which contains the execution data. -->
+       <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+       <!-- Sets the output directory for the code coverage report. -->
+       <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+      </configuration>
+     </execution>
+     <!-- The Executions required by unit tests are omitted. -->
+     <!--
+         Prepares the property pointing to the JaCoCo runtime agent which
+         is passed as VM argument when Maven the Failsafe plugin is executed.
+     -->
+     <execution>
+      <id>pre-integration-test</id>
+      <phase>pre-integration-test</phase>
+      <goals>
+       <goal>prepare-agent</goal>
+      </goals>
+      <configuration>
+       <!-- Sets the path to the file which contains the execution data. -->
+       <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+       <!--
+           Sets the name of the property containing the settings
+           for JaCoCo runtime agent.
+       -->
+       <propertyName>failsafeArgLine</propertyName>
+      </configuration>
+     </execution>
+     <!--
+         Ensures that the code coverage report for integration tests after
+         integration tests have been run.
+     -->
+     <execution>
+      <id>post-integration-test</id>
+      <phase>post-integration-test</phase>
+      <goals>
+       <goal>report</goal>
+      </goals>
+      <configuration>
+       <!-- Sets the path to the file which contains the execution data. -->
+       <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+       <!-- Sets the output directory for the code coverage report. -->
+       <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+      </configuration>
+     </execution>
+     <execution>
+      <id>merge-results</id>
+      <phase>verify</phase>
+      <goals>
+       <goal>merge</goal>
+      </goals>
+      <configuration>
+       <fileSets>
+        <!-- Implementation attribute not needed in Maven 3 -->
+        <!--<fileSet implementation="org.apache.maven.shared.model.fileset.FileSet">-->
+        <fileSet>
+         <directory>${project.build.directory}/coverage-reports</directory>
+         <includes>
+          <include>*.exec</include>
+         </includes>
+        </fileSet>
+       </fileSets>
+       <!-- File containing the merged data -->
+       <destFile>${project.build.directory}/jacoco-merged/merged.exec</destFile>
+      </configuration>
+     </execution>
+     <execution>
+      <id>post-merge-report</id>
+      <phase>verify</phase>
+      <goals>
+       <goal>report</goal>
+      </goals>
+      <configuration>
+       <dataFile>${project.build.directory}/jacoco-merged/merged.exec</dataFile>
+       <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-antrun-plugin</artifactId>
+    <version>1.4</version>
+    <executions>
+     <execution>
+      <phase>generate-test-resources</phase>
+      <configuration>
+       <tasks>
+        <echo message="Creating diagnostic dump output directory"/>
+        <mkdir dir="./target/diagDump"/>
+       </tasks>
+      </configuration>
+      <goals>
+       <goal>run</goal>
       </goals>
      </execution>
     </executions>
    </plugin>
+
+
   </plugins>
-
-
  </build>
+ <distributionManagement>
+  <snapshotRepository>
+   <id>ossrh</id>
+   <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  </snapshotRepository>
+ </distributionManagement>
+ <profiles>
+  <profile>
+   <id>release</id>
+   <build>
+    <plugins>
+
+
+     <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-source-plugin</artifactId>
+      <version>2.2.1</version>
+      <executions>
+       <execution>
+        <id>attach-sources</id>
+        <goals>
+         <goal>jar-no-fork</goal>
+        </goals>
+       </execution>
+      </executions>
+     </plugin>
+     <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-javadoc-plugin</artifactId>
+      <version>2.10.4</version>
+      <configuration>
+       <excludePackageNames>
+        org.hyperledger.fabric_ca.sdk.helper:org.hyperledger.fabric.protos.*:org.hyperledger.fabric.sdk.helper:org.hyperledger.fabric.sdk.transaction:org.hyperledger.fabric.sdk.security
+       </excludePackageNames>
+       <show>public</show>
+       <doctitle>Hyperledger Fabric Java SDK</doctitle>
+       <nohelp>true</nohelp>
+      </configuration>
+      <executions>
+       <execution>
+        <id>attach-javadocs</id>
+        <goals>
+         <goal>jar</goal>
+        </goals>
+       </execution>
+      </executions>
+     </plugin>
+    </plugins>
+   </build>
+  </profile>
+ </profiles>
  <properties>
   <spring.version>4.2.6.RELEASE</spring.version>
   <hibernate.version>5.1.0.Final</hibernate.version>
+  <grpc.version>1.11.0</grpc.version><!-- CURRENT_GRPC_VERSION -->
+  <bouncycastle.version>1.59</bouncycastle.version>
+  <httpclient.version>4.5.5</httpclient.version>
+  <skipITs>true</skipITs>
+  <alpn-boot-version>8.1.7.v20160121</alpn-boot-version>
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <jacoco.version>0.7.9</jacoco.version>
+  <org.hyperledger.fabric.sdktest.ITSuite>IntegrationSuite.java</org.hyperledger.fabric.sdktest.ITSuite>
+  <gpg.executable>gpg2</gpg.executable>
  </properties>
 </project>
